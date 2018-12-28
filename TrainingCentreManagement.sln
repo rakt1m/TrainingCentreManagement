@@ -3,7 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingCentreManagement", "TrainingCentreManagement\TrainingCentreManagement.csproj", "{C07507F6-08C4-49AE-A6BC-19BEE448311B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainingCentreManagement", "TrainingCentreManagement\TrainingCentreManagement.csproj", "{C07507F6-08C4-49AE-A6BC-19BEE448311B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingCentreManagement.BLL", "TrainingCentreManagement.BLL\TrainingCentreManagement.BLL.csproj", "{7CFB6A18-A1B8-48AC-9C61-E26B54FDAD22}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingCentreManagement.Configuration", "TrainingCentreManagement.Configuration\TrainingCentreManagement.Configuration.csproj", "{E5CFEEE2-BC07-4E2F-87E8-E5B59EF4A23D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingCentreManagement.DatabaseContext", "TrainingCentreManagement.DatabaseContext\TrainingCentreManagement.DatabaseContext.csproj", "{1E077321-9E10-4EBC-9DE9-9E46EBE49386}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingCentreManagement.Models", "TrainingCentreManagement.Models\TrainingCentreManagement.Models.csproj", "{79D9814D-C480-409B-970E-E12C55CDA6E3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingCentreManagement.Repositories", "TrainingCentreManagement.Repositories\TrainingCentreManagement.Repositories.csproj", "{F34FD416-8701-4605-B6D2-6652A7C0F3FB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +25,26 @@ Global
 		{C07507F6-08C4-49AE-A6BC-19BEE448311B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C07507F6-08C4-49AE-A6BC-19BEE448311B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C07507F6-08C4-49AE-A6BC-19BEE448311B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7CFB6A18-A1B8-48AC-9C61-E26B54FDAD22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7CFB6A18-A1B8-48AC-9C61-E26B54FDAD22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7CFB6A18-A1B8-48AC-9C61-E26B54FDAD22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7CFB6A18-A1B8-48AC-9C61-E26B54FDAD22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E5CFEEE2-BC07-4E2F-87E8-E5B59EF4A23D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E5CFEEE2-BC07-4E2F-87E8-E5B59EF4A23D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E5CFEEE2-BC07-4E2F-87E8-E5B59EF4A23D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E5CFEEE2-BC07-4E2F-87E8-E5B59EF4A23D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E077321-9E10-4EBC-9DE9-9E46EBE49386}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E077321-9E10-4EBC-9DE9-9E46EBE49386}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E077321-9E10-4EBC-9DE9-9E46EBE49386}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E077321-9E10-4EBC-9DE9-9E46EBE49386}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79D9814D-C480-409B-970E-E12C55CDA6E3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79D9814D-C480-409B-970E-E12C55CDA6E3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79D9814D-C480-409B-970E-E12C55CDA6E3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79D9814D-C480-409B-970E-E12C55CDA6E3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F34FD416-8701-4605-B6D2-6652A7C0F3FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F34FD416-8701-4605-B6D2-6652A7C0F3FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F34FD416-8701-4605-B6D2-6652A7C0F3FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F34FD416-8701-4605-B6D2-6652A7C0F3FB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
