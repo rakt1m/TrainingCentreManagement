@@ -4,16 +4,36 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TrainingCentreManagement", "TrainingCentreManagement\TrainingCentreManagement.csproj", "{C07507F6-08C4-49AE-A6BC-19BEE448311B}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F34FD416-8701-4605-B6D2-6652A7C0F3FB} = {F34FD416-8701-4605-B6D2-6652A7C0F3FB}
+		{79D9814D-C480-409B-970E-E12C55CDA6E3} = {79D9814D-C480-409B-970E-E12C55CDA6E3}
+		{E5CFEEE2-BC07-4E2F-87E8-E5B59EF4A23D} = {E5CFEEE2-BC07-4E2F-87E8-E5B59EF4A23D}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingCentreManagement.BLL", "TrainingCentreManagement.BLL\TrainingCentreManagement.BLL.csproj", "{7CFB6A18-A1B8-48AC-9C61-E26B54FDAD22}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F34FD416-8701-4605-B6D2-6652A7C0F3FB} = {F34FD416-8701-4605-B6D2-6652A7C0F3FB}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingCentreManagement.Configuration", "TrainingCentreManagement.Configuration\TrainingCentreManagement.Configuration.csproj", "{E5CFEEE2-BC07-4E2F-87E8-E5B59EF4A23D}"
+	ProjectSection(ProjectDependencies) = postProject
+		{F34FD416-8701-4605-B6D2-6652A7C0F3FB} = {F34FD416-8701-4605-B6D2-6652A7C0F3FB}
+		{7CFB6A18-A1B8-48AC-9C61-E26B54FDAD22} = {7CFB6A18-A1B8-48AC-9C61-E26B54FDAD22}
+		{1E077321-9E10-4EBC-9DE9-9E46EBE49386} = {1E077321-9E10-4EBC-9DE9-9E46EBE49386}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingCentreManagement.DatabaseContext", "TrainingCentreManagement.DatabaseContext\TrainingCentreManagement.DatabaseContext.csproj", "{1E077321-9E10-4EBC-9DE9-9E46EBE49386}"
+	ProjectSection(ProjectDependencies) = postProject
+		{79D9814D-C480-409B-970E-E12C55CDA6E3} = {79D9814D-C480-409B-970E-E12C55CDA6E3}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingCentreManagement.Models", "TrainingCentreManagement.Models\TrainingCentreManagement.Models.csproj", "{79D9814D-C480-409B-970E-E12C55CDA6E3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainingCentreManagement.Repositories", "TrainingCentreManagement.Repositories\TrainingCentreManagement.Repositories.csproj", "{F34FD416-8701-4605-B6D2-6652A7C0F3FB}"
+	ProjectSection(ProjectDependencies) = postProject
+		{1E077321-9E10-4EBC-9DE9-9E46EBE49386} = {1E077321-9E10-4EBC-9DE9-9E46EBE49386}
+		{79D9814D-C480-409B-970E-E12C55CDA6E3} = {79D9814D-C480-409B-970E-E12C55CDA6E3}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

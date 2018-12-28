@@ -7,8 +7,14 @@
 
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
+    <PackageReference Include="microsoft.entityframeworkcore.sqlserver" Version="2.2.0" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <ProjectReference Include="..\TrainingCentreManagement.Configuration\TrainingCentreManagement.Configuration.csproj" />
   </ItemGroup>
 
 </Project>
