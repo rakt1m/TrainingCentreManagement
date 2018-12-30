@@ -21,7 +21,7 @@ namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder .UseSqlServer("Server=RAKTIM-PC;Database=TIMSDB;Trusted_Connection=True;");
+                optionsBuilder .UseSqlServer("Server=RAKTIM-PC;Database=TrainingCentreDB;Trusted_Connection=True;");
             }
         }
         public DbSet<Institute> Institutes { get; set; }
@@ -29,5 +29,6 @@ namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
         public DbSet<Batch> Batches { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<Trainee> Trainees { get; set; }
+        public DbSet<Category> Categories { get; set; }
     }
 }

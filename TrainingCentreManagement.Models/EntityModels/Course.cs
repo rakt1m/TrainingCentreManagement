@@ -1,4 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Data.Common;
 
 namespace TrainingCentreManagement.Models.EntityModels
 {
@@ -13,6 +16,10 @@ namespace TrainingCentreManagement.Models.EntityModels
         [Display(Name="Course Fee")]
         public decimal Fee { get; set; }
         [Required]
-        public int Duration { get; set; } 
+        public int Duration { get; set; }
+       
+
+    
+        
     }
 }

@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using TrainingCentreManagement.BLL.Contracts;
 using TrainingCentreManagement.Models;
 
 
@@ -11,9 +12,14 @@ namespace TIMSApp.Controllers
 {
     public class HomeController : Controller
     {
+        private ICourseManager _iCourseManager;
+        public HomeController(ICourseManager iCourseManager)
+        {
+            _iCourseManager = iCourseManager;
+        }
         public IActionResult Index()
         {
-            return View();
+            return View(_iCourseManager.GetAll().ToList());
         }
 
         public IActionResult Privacy()
