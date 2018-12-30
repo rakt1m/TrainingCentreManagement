@@ -10,7 +10,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TrainingCentreManagement.BLL\TrainingCentreManagement.BLL.csproj" />
     <ProjectReference Include="..\TrainingCentreManagement.DatabaseContext\TrainingCentreManagement.DatabaseContext.csproj" />
+    <ProjectReference Include="..\TrainingCentreManagement.Repositories\TrainingCentreManagement.Repositories.csproj" />
   </ItemGroup>
 
   <ItemGroup>

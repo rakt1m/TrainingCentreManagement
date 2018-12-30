@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TrainingCentreManagement.Models;
 
-namespace TrainingCentreManagement.Controllers
+
+namespace TIMSApp.Controllers
 {
     public class HomeController : Controller
     {

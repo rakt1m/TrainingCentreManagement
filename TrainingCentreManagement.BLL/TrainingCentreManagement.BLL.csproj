@@ -5,8 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Manager\**" />
+    <EmbeddedResource Remove="Manager\**" />
+    <None Remove="Manager\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Contracts\" />
-    <Folder Include="Manager\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TrainingCentreManagement.Repositories\TrainingCentreManagement.Repositories.csproj" />
   </ItemGroup>
 
 </Project>
