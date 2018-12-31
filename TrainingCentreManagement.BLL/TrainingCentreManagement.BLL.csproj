@@ -11,10 +11,12 @@
   </ItemGroup>
 
   <ItemGroup>
+
     <Folder Include="Contracts\" />
   </ItemGroup>
 
   <ItemGroup>
+
     <ProjectReference Include="..\TrainingCentreManagement.Repositories\TrainingCentreManagement.Repositories.csproj" />
   </ItemGroup>
 

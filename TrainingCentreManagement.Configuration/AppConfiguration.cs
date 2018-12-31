@@ -43,6 +43,10 @@ namespace TrainingCentreManagement.Configuration
 
             services.AddTransient<ITrainerRepository, TrainerRepository>();
             services.AddTransient<ITrainerManager, TrainerManager>();
+
+            services.AddTransient<ICategoryRepository, CategoryRepository>();
+            services.AddTransient<ICategoryManager, CategoryManager>();
+
         }
     }
 }

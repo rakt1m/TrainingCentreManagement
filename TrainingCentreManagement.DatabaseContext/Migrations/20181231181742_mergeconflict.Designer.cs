@@ -10,8 +10,8 @@ using TrainingCentreManagement.DatabaseContext.DatabaseContext;
 namespace TrainingCentreManagement.DatabaseContext.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181230162310_Course-category")]
-    partial class Coursecategory
+    [Migration("20181231181742_mergeconflict")]
+    partial class mergeconflict
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,8 +29,6 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
 
                     b.Property<DateTime>("ClassStart");
 
-                    b.Property<int>("CourseId");
-
                     b.Property<DateTime>("RegistrationEnd");
 
                     b.Property<DateTime>("RegistrationStart");
@@ -41,8 +39,6 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
                     b.Property<int>("TotalSeats");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CourseId");
 
                     b.ToTable("Batches");
                 });
@@ -66,23 +62,22 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoryId");
+                    b.Property<int>("CategoryId");
 
                     b.Property<int>("Duration");
 
                     b.Property<decimal>("Fee");
 
-                    b.Property<bool>("IsLatest");
+                    b.Property<int>("IsLatest");
 
-                    b.Property<bool>("IsOnGoing");
+                    b.Property<int>("IsOnGoing");
 
-                    b.Property<bool>("IsUpComing");
+                    b.Property<int>("IsUpComing");
 
                     b.Property<string>("Outline")
                         .IsRequired();
 
-                    b.Property<string>("Tags")
-                        .IsRequired();
+                    b.Property<string>("Tags");
 
                     b.Property<string>("Title")
                         .IsRequired();
@@ -166,19 +161,12 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
                     b.ToTable("Trainers");
                 });
 
-            modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.Batch", b =>
-                {
-                    b.HasOne("TrainingCentreManagement.Models.EntityModels.Course", "Course")
-                        .WithMany("Batches")
-                        .HasForeignKey("CourseId")
-                        .OnDelete(DeleteBehavior.Cascade);
-                });
-
             modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.Course", b =>
                 {
                     b.HasOne("TrainingCentreManagement.Models.EntityModels.Category", "Category")
-                        .WithMany("Courses")
-                        .HasForeignKey("CategoryId");
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

@@ -60,17 +60,29 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("CategoryId");
+
                     b.Property<int>("Duration");
 
                     b.Property<decimal>("Fee");
 
+                    b.Property<int>("IsLatest");
+
+                    b.Property<int>("IsOnGoing");
+
+                    b.Property<int>("IsUpComing");
+
                     b.Property<string>("Outline")
                         .IsRequired();
+
+                    b.Property<string>("Tags");
 
                     b.Property<string>("Title")
                         .IsRequired();
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Courses");
                 });
@@ -145,6 +157,14 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Trainers");
+                });
+
+            modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.Course", b =>
+                {
+                    b.HasOne("TrainingCentreManagement.Models.EntityModels.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

@@ -1,5 +1,8 @@
-﻿@using TrainingCentreManagement.Models.EntityModels
 @model TrainingCentreManagement.Models.EntityModels.Course
+
+﻿@using TrainingCentreManagement.Models.EntityModels
+
+
 
 @{
     ViewData["Title"] = "Create";
@@ -34,11 +37,37 @@
                 <span asp-validation-for="Duration" class="text-danger"></span>
             </div>
             <div class="form-group">
+
+                <label asp-for="IsLatest" class="control-label"></label>
+                <input asp-for="IsLatest" class="form-control" />
+                <span asp-validation-for="IsLatest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsUpComing" class="control-label"></label>
+                <input asp-for="IsUpComing" class="form-control" />
+                <span asp-validation-for="IsUpComing" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsOnGoing" class="control-label"></label>
+                <input asp-for="IsOnGoing" class="form-control" />
+                <span asp-validation-for="IsOnGoing" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tags" class="control-label"></label>
+                <input asp-for="Tags" class="form-control" />
+                <span asp-validation-for="Tags" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
+            </div>
+            <div class="form-group">
+
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
     </div>
-   
+
 </div>
 
 <div>
