@@ -1,0 +1,72 @@
+﻿@model TrainingCentreManagement.Models.EntityModels.Course
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Course</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label"></label>
+                <input asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Outline" class="control-label"></label>
+                <input asp-for="Outline" class="form-control" />
+                <span asp-validation-for="Outline" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fee" class="control-label"></label>
+                <input asp-for="Fee" class="form-control" />
+                <span asp-validation-for="Fee" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Duration" class="control-label"></label>
+                <input asp-for="Duration" class="form-control" />
+                <span asp-validation-for="Duration" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsLatest" class="control-label"></label>
+                <input asp-for="IsLatest" class="form-control" />
+                <span asp-validation-for="IsLatest" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsUpComing" class="control-label"></label>
+                <input asp-for="IsUpComing" class="form-control" />
+                <span asp-validation-for="IsUpComing" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="IsOnGoing" class="control-label"></label>
+                <input asp-for="IsOnGoing" class="form-control" />
+                <span asp-validation-for="IsOnGoing" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Tags" class="control-label"></label>
+                <input asp-for="Tags" class="form-control" />
+                <span asp-validation-for="Tags" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
