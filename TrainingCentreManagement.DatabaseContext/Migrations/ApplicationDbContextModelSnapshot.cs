@@ -27,8 +27,11 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
 
                     b.Property<DateTime>("ClassStart");
 
+<<<<<<< HEAD
                     b.Property<int>("CourseId");
 
+=======
+>>>>>>> f086ee706453272d91887f09ef1c2e4ebf3d9e98
                     b.Property<DateTime>("RegistrationEnd");
 
                     b.Property<DateTime>("RegistrationStart");
@@ -40,8 +43,11 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
 
                     b.HasKey("Id");
 
+<<<<<<< HEAD
                     b.HasIndex("CourseId");
 
+=======
+>>>>>>> f086ee706453272d91887f09ef1c2e4ebf3d9e98
                     b.ToTable("Batches");
                 });
 
@@ -64,12 +70,16 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+<<<<<<< HEAD
                     b.Property<int>("CategoryId");
 
+=======
+>>>>>>> f086ee706453272d91887f09ef1c2e4ebf3d9e98
                     b.Property<int>("Duration");
 
                     b.Property<decimal>("Fee");
 
+<<<<<<< HEAD
                     b.Property<int>("IsLatest");
 
                     b.Property<int>("IsOnGoing");
@@ -82,13 +92,21 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
                     b.Property<string>("Tags")
                         .IsRequired();
 
+=======
+                    b.Property<string>("Outline")
+                        .IsRequired();
+
+>>>>>>> f086ee706453272d91887f09ef1c2e4ebf3d9e98
                     b.Property<string>("Title")
                         .IsRequired();
 
                     b.HasKey("Id");
 
+<<<<<<< HEAD
                     b.HasIndex("CategoryId");
 
+=======
+>>>>>>> f086ee706453272d91887f09ef1c2e4ebf3d9e98
                     b.ToTable("Courses");
                 });
 
@@ -163,6 +181,7 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
 
                     b.ToTable("Trainers");
                 });
+<<<<<<< HEAD
 
             modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.Batch", b =>
                 {
@@ -179,6 +198,8 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
+=======
+>>>>>>> f086ee706453272d91887f09ef1c2e4ebf3d9e98
 #pragma warning restore 612, 618
         }
     }

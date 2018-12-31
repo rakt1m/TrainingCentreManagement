@@ -1,9 +1,14 @@
 ﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
+<<<<<<< HEAD
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TrainingCentreManagement.BLL.Contracts;
 using TrainingCentreManagement.DatabaseContext.DatabaseContext;
+=======
+using Microsoft.EntityFrameworkCore;
+using TrainingCentreManagement.BLL.Contracts;
+>>>>>>> f086ee706453272d91887f09ef1c2e4ebf3d9e98
 using TrainingCentreManagement.Models.EntityModels;
 
 namespace TrainingCentreManagement.Controllers
@@ -11,12 +16,19 @@ namespace TrainingCentreManagement.Controllers
     public class CoursesController : Controller
     {
         private readonly ICourseManager _iCourseManager;
+<<<<<<< HEAD
         private readonly ICategoryManager _iCategoryManager;
 
         public CoursesController(ICourseManager iCourseManager, ICategoryManager iCategoryManager)
         {
             _iCourseManager = iCourseManager;
             _iCategoryManager = iCategoryManager;
+=======
+
+        public CoursesController(ICourseManager iCourseManager)
+        {
+            _iCourseManager = iCourseManager;
+>>>>>>> f086ee706453272d91887f09ef1c2e4ebf3d9e98
         }
 
         // GET: Courses
@@ -42,12 +54,15 @@ namespace TrainingCentreManagement.Controllers
         // GET: Courses/Create
         public IActionResult Create()
         {
+<<<<<<< HEAD
             ViewBag.CategoryId = _iCategoryManager.GetAll()
                 .Select(c => new SelectListItem
                 {
                     Value = c.Id.ToString(),
                     Text = c.Name
                 }).ToList();
+=======
+>>>>>>> f086ee706453272d91887f09ef1c2e4ebf3d9e98
             return View();
         }
 
@@ -56,19 +71,26 @@ namespace TrainingCentreManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public IActionResult Create(Course course)
+=======
+        public IActionResult Create([Bind("Id,Title,Outline,Fee,Duration")] Course course)
+>>>>>>> f086ee706453272d91887f09ef1c2e4ebf3d9e98
         {
             if (ModelState.IsValid)
             {
                 _iCourseManager.Add(course);
                 return RedirectToAction(nameof(Index));
             }
+<<<<<<< HEAD
             ViewBag.CategoryId = _iCategoryManager.GetAll()
                 .Select(c => new SelectListItem
                 {
                     Value = c.Id.ToString(),
                     Text = c.Name
                 }).ToList();
+=======
+>>>>>>> f086ee706453272d91887f09ef1c2e4ebf3d9e98
             return View(course);
         }
 
@@ -90,7 +112,11 @@ namespace TrainingCentreManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+<<<<<<< HEAD
         public IActionResult Edit(int id, Course course)
+=======
+        public IActionResult Edit(int id, [Bind("Id,Title,Outline,Fee,Duration")] Course course)
+>>>>>>> f086ee706453272d91887f09ef1c2e4ebf3d9e98
         {
             if (id != course.Id)
             {

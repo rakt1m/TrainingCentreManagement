@@ -17,6 +17,7 @@ namespace TrainingCentreManagement.Models.EntityModels
         public decimal Fee { get; set; }
         [Required]
         public int Duration { get; set; }
+<<<<<<< HEAD
        [DefaultValue(1)]
         public int IsLatest { get; set; }
 
@@ -30,6 +31,22 @@ namespace TrainingCentreManagement.Models.EntityModels
         public string Tags { get; set; }
        
         public int CategoryId { get; set; } 
+=======
+        [Display(Name = "Latest?")]
+       
+        public bool IsLatest { get; set; }
+        [Display(Name = "Upcoming?")]
+        
+        public bool IsUpComing { get; set; }
+
+        [Display(Name = "On Going")]
+     
+        public bool IsOnGoing { get; set; }
+        [Required]
+        public string Tags { get; set; }
+       
+        public int CategoryId { get; set; }
+>>>>>>> f086ee706453272d91887f09ef1c2e4ebf3d9e98
         public virtual Category Category { get; set; }
 
     

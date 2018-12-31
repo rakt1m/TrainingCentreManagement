@@ -21,7 +21,11 @@ namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
         {
             if (!optionsBuilder.IsConfigured)
             {
+<<<<<<< HEAD
                 optionsBuilder .UseSqlServer("Server=.;Database=TrainingCentreDB;Trusted_Connection=True;");
+=======
+                optionsBuilder .UseSqlServer("Server=RAKTIM-PC;Database=TrainingCentreDB;Trusted_Connection=True;");
+>>>>>>> f086ee706453272d91887f09ef1c2e4ebf3d9e98
             }
         }
         public DbSet<Institute> Institutes { get; set; }
