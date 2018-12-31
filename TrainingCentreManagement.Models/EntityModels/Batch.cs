@@ -22,6 +22,7 @@ namespace TrainingCentreManagement.Models.EntityModels
         [Display(Name = "Class Start")]
         public DateTime ClassStart { get; set; }
 
-     
+        public int CourseId { get; set; }
+      public virtual Course Course { get; set; }
   }
 }

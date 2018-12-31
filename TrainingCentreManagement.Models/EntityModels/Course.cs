@@ -17,7 +17,21 @@ namespace TrainingCentreManagement.Models.EntityModels
         public decimal Fee { get; set; }
         [Required]
         public int Duration { get; set; }
+        [Display(Name = "Latest?")]
        
+        public bool IsLatest { get; set; }
+        [Display(Name = "Upcoming?")]
+        
+        public bool IsUpComing { get; set; }
+
+        [Display(Name = "On Going")]
+     
+        public bool IsOnGoing { get; set; }
+        [Required]
+        public string Tags { get; set; }
+       
+        public int CategoryId { get; set; }
+        public virtual Category Category { get; set; }
 
     
         
