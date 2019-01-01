@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TrainingCentreManagement.DatabaseContext.Migrations
 {
-    public partial class mergeconflict : Migration
+    public partial class categoryidresolved : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -101,7 +101,7 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
                     IsUpComing = table.Column<int>(nullable: false),
                     IsOnGoing = table.Column<int>(nullable: false),
                     Tags = table.Column<string>(nullable: true),
-                    CategoryId = table.Column<int>(nullable: false)
+                    CategoryId = table.Column<int>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -111,7 +111,7 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

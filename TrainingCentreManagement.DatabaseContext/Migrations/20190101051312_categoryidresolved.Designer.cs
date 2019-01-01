@@ -10,8 +10,8 @@ using TrainingCentreManagement.DatabaseContext.DatabaseContext;
 namespace TrainingCentreManagement.DatabaseContext.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20181231181742_mergeconflict")]
-    partial class mergeconflict
+    [Migration("20190101051312_categoryidresolved")]
+    partial class categoryidresolved
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -62,7 +62,7 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("CategoryId");
+                    b.Property<int?>("CategoryId");
 
                     b.Property<int>("Duration");
 
@@ -164,9 +164,8 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
             modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.Course", b =>
                 {
                     b.HasOne("TrainingCentreManagement.Models.EntityModels.Category", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade);
+                        .WithMany("Courses")
+                        .HasForeignKey("CategoryId");
                 });
 #pragma warning restore 612, 618
         }
