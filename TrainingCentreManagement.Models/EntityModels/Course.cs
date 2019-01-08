@@ -35,7 +35,7 @@ namespace TrainingCentreManagement.Models.EntityModels
 
         public virtual Category Category { get; set; }
 
-
+        public virtual List<Batch> Batches { get; set; }
     
         
     }

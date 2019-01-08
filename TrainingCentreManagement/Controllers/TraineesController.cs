@@ -1,16 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TrainingCentreManagement.BLL.Contracts;
 using TrainingCentreManagement.Models.EntityModels;
 
-
-namespace TIMSApp.Controllers
+namespace TrainingCentreManagement.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TraineesController : Controller
     {
         private readonly ITraineeManager _iTraineeManager;

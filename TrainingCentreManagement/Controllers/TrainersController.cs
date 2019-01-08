@@ -1,12 +1,13 @@
 ﻿using System.Linq;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TrainingCentreManagement.BLL.Contracts;
 using TrainingCentreManagement.Models.EntityModels;
 
-namespace TIMSApp.Controllers
+namespace TrainingCentreManagement.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class TrainersController : Controller
     {
         private readonly ITrainerManager _iTrainerManager; 

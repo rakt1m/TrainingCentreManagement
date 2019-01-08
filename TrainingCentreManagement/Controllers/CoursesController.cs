@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -10,6 +11,7 @@ using TrainingCentreManagement.Models.EntityModels;
 
 namespace TrainingCentreManagement.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class CoursesController : Controller
     {
         private readonly ICourseManager _iCourseManager;
@@ -64,7 +66,7 @@ namespace TrainingCentreManagement.Controllers
 
        
 
-        public IActionResult Create([Bind("Id,Title,Outline,Fee,Duration,Tags")] Course course)
+        public IActionResult Create(Course course)
 
         {
             if (ModelState.IsValid)
@@ -103,7 +105,7 @@ namespace TrainingCentreManagement.Controllers
         [ValidateAntiForgeryToken]
 
 
-        public IActionResult Edit(int id, [Bind("Id,Title,Outline,Fee,Duration")] Course course)
+        public IActionResult Edit(int id,Course course)
 
         {
             if (id != course.Id)
