@@ -1,1 +1,3 @@
-﻿$('.carousel').carousel()
+﻿$('.carousel').carousel();
+
+$('#myModal').modal(options);

@@ -13,6 +13,7 @@ namespace TrainingCentreManagement.Controllers
     {
         private UserManager<AppUser> _userManager;
         private SignInManager<AppUser> _signInManager;
+        
       
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
@@ -21,6 +22,7 @@ namespace TrainingCentreManagement.Controllers
         }
         public IActionResult Login(string returnUrl)
         {
+           
             ViewBag.ReturnUrl = returnUrl;
             return View();
         }

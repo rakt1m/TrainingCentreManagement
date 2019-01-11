@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TrainingCentreManagement.BLL.Contracts;
 using TrainingCentreManagement.Models.EntityModels;
+using TrainingCentreManagement.Models.ViewModels;
 
 namespace TrainingCentreManagement.Controllers
 {
@@ -11,10 +12,12 @@ namespace TrainingCentreManagement.Controllers
     public class TraineesController : Controller
     {
         private readonly ITraineeManager _iTraineeManager;
+        private readonly ICourseManager _iCourseManager;
 
-        public TraineesController(ITraineeManager iTraineeManager)
+        public TraineesController(ITraineeManager iTraineeManager,ICourseManager iCourseManager)
         {
             _iTraineeManager = iTraineeManager;
+            _iCourseManager = iCourseManager;
         }
 
         // GET: Trainees
@@ -129,9 +132,18 @@ namespace TrainingCentreManagement.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TraineeExists(int id)
+        private bool TraineeExists(long id)
         {
             return _iTraineeManager.GetAll().Any(e => e.Id == id);
+        }
+
+        public IActionResult GetTraineeEnrollPartial(int courseId)
+        {
+            //var course = _iCourseManager.GetById(courseId);
+          TraineeEnrollViewModel model=new TraineeEnrollViewModel();
+            model.CourseId = courseId;
+            
+            return PartialView("_TraineeEnrollPartialView", model);
         }
     }
 }

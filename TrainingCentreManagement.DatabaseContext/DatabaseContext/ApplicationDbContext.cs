@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using TrainingCentreManagement.Models.EntityModels;
+using TrainingCentreManagement.Models.EntityModels.BaseEntities;
+using TrainingCentreManagement.Models.EntityModels.Courses;
+using TrainingCentreManagement.Models.EntityModels.Trainings;
 
 namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
 {
@@ -23,7 +26,7 @@ namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
             if (!optionsBuilder.IsConfigured)
             {
 
-                optionsBuilder .UseSqlServer("Server=.\\SqlExpress;Database=TrainingCenterDB;Trusted_Connection=True;");
+                optionsBuilder .UseSqlServer("Server=MAMUN-LAPTOP-XI;Database=TrainingCenterDB;Trusted_Connection=True;");
 
             }
         }
@@ -31,11 +34,27 @@ namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-           
+       
+            modelBuilder.Entity<TrainingCategory>().HasKey(c => c.TrainingId);
+            modelBuilder.Entity<TrainingCategory>().HasKey(c => c.CategoryId);
+            modelBuilder.Entity<TrainingTag>().HasKey(c => c.TrainingId);
+            modelBuilder.Entity<TrainingTag>().HasKey(c => c.TagId);
+            modelBuilder.Entity<Training>().HasOne(c => c.TrainingSchedule)
+                .WithOne(c => c.Training)
+                .HasForeignKey<Training>(c=>c.TrainingScheduleId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+            modelBuilder.Entity<Batch>().HasOne(c => c.BatchSchedule)
+                .WithOne(c => c.Batch)
+                .HasForeignKey<Batch>(c => c.BatchScheduleId)
+                .OnDelete(DeleteBehavior.SetNull);
+
+
         }
 
         public DbSet<Institute> Institutes { get; set; }
         public DbSet<Course> Courses { get; set; }
+        public DbSet<Workshop> Workshops { get; set; }
         public DbSet<Batch> Batches { get; set; }
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<Trainee> Trainees { get; set; }
