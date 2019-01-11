@@ -23,7 +23,7 @@ namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
             if (!optionsBuilder.IsConfigured)
             {
 
-                optionsBuilder .UseSqlServer("Server=PENCILBOX;Database=TrainingCenterDB;Trusted_Connection=True;");
+                optionsBuilder .UseSqlServer("Server=MAMUN-LAPTOP-XI;Database=TrainingCenterDB;Trusted_Connection=True;");
 
             }
         }

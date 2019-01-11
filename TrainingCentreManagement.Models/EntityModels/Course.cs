@@ -22,25 +22,15 @@ namespace TrainingCentreManagement.Models.EntityModels
         public decimal Fee { get; set; }
         [Required]
         public int Duration { get; set; }
-
-       [DefaultValue(1)]
-        public int IsLatest { get; set; }
-
-        [DefaultValue(0)]
-        public int IsUpComing { get; set; }
-
-        [DefaultValue(0)]
-
-        public int IsOnGoing { get; set; }
-        
-        public string Tags { get; set; }
+        public List<CourseTag> Tags { get; set; }
              
-        public int? CategoryId { get; set; }
-
-        public virtual Category Category { get; set; }
+        public List<CourseCategory> Categories { get; set; }
 
         public virtual List<Batch> Batches { get; set; }
 
+        public  string Description { get; set; }
+        public string ShortDescription { get; set; }
+        public bool IsActive { get; set; }  
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
