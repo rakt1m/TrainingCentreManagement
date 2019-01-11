@@ -13,5 +13,10 @@ namespace TrainingCentreManagement.Models.EntityModels
         public string Phone { get; set; }
         [Required]
         public string Email { get; set; }
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
+        public string Logo { get; set; }
+
+        
     }
 }

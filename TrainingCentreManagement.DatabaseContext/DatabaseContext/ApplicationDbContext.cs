@@ -31,7 +31,11 @@ namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-           
+       
+            modelBuilder.Entity<CourseCategory>().HasKey(c => c.CourseId);
+            modelBuilder.Entity<CourseCategory>().HasKey(c => c.CategoryId);
+
+
         }
 
         public DbSet<Institute> Institutes { get; set; }

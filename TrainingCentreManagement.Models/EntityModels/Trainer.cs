@@ -1,12 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using TrainingCentreManagement.Models.Contracts;
 
 namespace TrainingCentreManagement.Models.EntityModels
 {
-   public class Trainer
+   public class Trainer:IEntity
     {
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+
+        public string EntityDescription { get; set; }
+
         [Required]
         public string Phone { get; set; }
         [Required]
@@ -15,7 +20,9 @@ namespace TrainingCentreManagement.Models.EntityModels
         public string Address { get; set; }
         [Required]
         [Display(Name="Linkedin Profile")]
-        public string LinkedinProfile { get; set; } 
+        public string LinkedinProfile { get; set; }
 
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 }

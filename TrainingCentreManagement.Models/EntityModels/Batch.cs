@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections;
 using System.ComponentModel.DataAnnotations;
+using TrainingCentreManagement.Models.Contracts;
 
 namespace TrainingCentreManagement.Models.EntityModels
 {
-  public class Batch 
+  public class Batch:IEntity
   {
         public int Id { get; set; }
-        [Required]
-        public string Title { get; set; }
+
+      public string Name { get; set; }
+      public string EntityDescription { get; set; }
+      public string Description { get; set; }
+
         [Required]
         [Display(Name= "Total Seats")]
         public int TotalSeats { get; set; }
