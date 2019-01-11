@@ -8,6 +8,8 @@ using TrainingCentreManagement.BLL.Contracts;
 using TrainingCentreManagement.DatabaseContext.DatabaseContext;
 
 using TrainingCentreManagement.Models.EntityModels;
+using TrainingCentreManagement.Models.EntityModels.Courses;
+using TrainingCentreManagement.Models.EntityModels.Trainings;
 
 namespace TrainingCentreManagement.Controllers
 {
@@ -159,7 +161,7 @@ namespace TrainingCentreManagement.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CourseExists(int id)
+        private bool CourseExists(long id)
         {
             return _iCourseManager.GetAll().Any(e => e.Id == id);
         }

@@ -129,7 +129,7 @@ namespace TrainingCentreManagement.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool BatchExists(int id)
+        private bool BatchExists(long id)
         {
             return _iBatchManager.GetAll().Any(e => e.Id == id);
         }

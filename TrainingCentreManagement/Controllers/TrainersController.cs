@@ -130,7 +130,7 @@ namespace TrainingCentreManagement.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool TrainerExists(int id)
+        private bool TrainerExists(long id)
         {
             return _iTrainerManager.GetAll().Any(e => e.Id == id);
         }

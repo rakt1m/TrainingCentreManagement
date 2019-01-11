@@ -1,5 +1,7 @@
 ﻿using TrainingCentreManagement.BLL.Contracts;
 using TrainingCentreManagement.Models.EntityModels;
+using TrainingCentreManagement.Models.EntityModels.Courses;
+using TrainingCentreManagement.Models.EntityModels.Trainings;
 using TrainingCentreManagement.Repositories.Contracts;
 
 namespace TrainingCentreManagement.BLL.Managers

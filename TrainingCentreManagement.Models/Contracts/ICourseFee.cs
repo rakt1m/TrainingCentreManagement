@@ -4,9 +4,8 @@ using System.Text;
 
 namespace TrainingCentreManagement.Models.Contracts
 {
-    public interface IEntity:IAudit,IMasterEntity
+    public class ICourseFee
     {
-       string EntityDescription { get; set; }  
-
+        public decimal Fee { get; set; }
     }
 }

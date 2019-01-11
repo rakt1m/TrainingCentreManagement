@@ -137,7 +137,7 @@ namespace TrainingCentreManagement.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CategoryExists(int id)
+        private bool CategoryExists(long id)
         {
             return _iCategoryManager.GetAll().Any(e => e.Id == id);
         }

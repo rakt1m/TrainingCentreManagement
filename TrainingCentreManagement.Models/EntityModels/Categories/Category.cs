@@ -1,0 +1,22 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+using TrainingCentreManagement.Models.Contracts;
+
+namespace TrainingCentreManagement.Models.EntityModels
+{
+   public class Category:IEntity
+    {
+        public long  Id { get; set; }
+        
+        public string Name { get; set; }
+        public string EntityDescription { get; set; }
+        public int? ParentId  { get; set; }
+        public Category Parent { get; set; }
+        public List<Category> Childs { get; set; } 
+        public virtual List<TrainingCategory> Courses { get; set; }
+
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
+    }
+}
