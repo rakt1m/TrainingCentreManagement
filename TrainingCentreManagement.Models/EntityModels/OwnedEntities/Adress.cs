@@ -4,7 +4,10 @@ using System.Text;
 
 namespace TrainingCentreManagement.Models.EntityModels.OwnedEntities
 {
-    class Adress
+    public class Adress
     {
+        public string AddressLine1 { get; set; }
+        public string AddressLine2 { get; set; }
+        public string S { get; set; }
     }
 }

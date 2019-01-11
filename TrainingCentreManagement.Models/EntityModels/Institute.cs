@@ -1,12 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+using TrainingCentreManagement.Models.Contracts;
 
 namespace TrainingCentreManagement.Models.EntityModels
 {
-   public class Institute
+   public class Institute:IEntity
     {
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+
+        public string EntityDescription { get; set; }
+
         [Required]
         public string About { get; set; }
         [Required]
@@ -17,6 +22,8 @@ namespace TrainingCentreManagement.Models.EntityModels
         public string AddressLine2 { get; set; }
         public string Logo { get; set; }
 
-        
+
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 }

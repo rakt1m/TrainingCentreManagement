@@ -1,13 +1,18 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Data.Common;
+using TrainingCentreManagement.Models.Contracts;
 
 namespace TrainingCentreManagement.Models.EntityModels
 {
-    public class Course
+    public class Course:IEntity
     {
         public int Id { get; set; }
+        public string Name { get; set; }
+        public string EntityDescription { get; set; }
+
         [Required]
         public string Title { get; set; }
         [Required]
@@ -35,7 +40,9 @@ namespace TrainingCentreManagement.Models.EntityModels
         public virtual Category Category { get; set; }
 
         public virtual List<Batch> Batches { get; set; }
-    
-        
+
+
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 }
