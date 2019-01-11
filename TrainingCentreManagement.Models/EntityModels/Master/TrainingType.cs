@@ -1,6 +1,6 @@
 ﻿using TrainingCentreManagement.Models.Contracts;
 
-namespace TrainingCentreManagement.Models.EntityModels.Trainings
+namespace TrainingCentreManagement.Models.EntityModels.Master
 {
     public class TrainingType:IMasterEntity
     {

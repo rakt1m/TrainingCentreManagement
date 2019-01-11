@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using TrainingCentreManagement.Models.Contracts;
 
-namespace TrainingCentreManagement.Models.EntityModels
+namespace TrainingCentreManagement.Models.EntityModels.Categories
 {
    public class Category:IEntity
     {

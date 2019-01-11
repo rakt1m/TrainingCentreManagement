@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 
-namespace TrainingCentreManagement.Models.EntityModels
+namespace TrainingCentreManagement.Models.EntityModels.IdentityEntities
 {
    public class AppUser:IdentityUser
     {

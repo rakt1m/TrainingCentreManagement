@@ -1,5 +1,4 @@
-﻿using TrainingCentreManagement.Models.EntityModels.BaseEntities;
-using TrainingCentreManagement.Models.Enums;
+﻿using TrainingCentreManagement.Models.Enums;
 
 namespace TrainingCentreManagement.Models.EntityModels.Trainings
 {

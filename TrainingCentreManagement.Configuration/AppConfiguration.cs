@@ -14,6 +14,7 @@ using TrainingCentreManagement.BLL.Contracts;
 using TrainingCentreManagement.BLL.Managers;
 using TrainingCentreManagement.DatabaseContext.DatabaseContext;
 using TrainingCentreManagement.Models.EntityModels;
+using TrainingCentreManagement.Models.EntityModels.IdentityEntities;
 using TrainingCentreManagement.Repositories.Contracts;
 using TrainingCentreManagement.Repositories.Repositories;
 

@@ -1,8 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using TrainingCentreManagement.Models.EntityModels.BaseEntities;
+﻿using TrainingCentreManagement.Models.EntityModels.Trainings;
 
-namespace TrainingCentreManagement.Models.EntityModels
+namespace TrainingCentreManagement.Models.EntityModels.Categories
 {
    public class TrainingCategory
     {

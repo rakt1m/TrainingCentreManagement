@@ -1,9 +1,12 @@
 ﻿using TrainingCentreManagement.Models.Contracts;
 
-public class ScedhuleType:IMasterEntity
+namespace TrainingCentreManagement.Models.EntityModels.Master
 {
+    public class ScedhuleType:IMasterEntity
+    {
    
-    public long Id { get; set; }
-    public string Name { get; set; }
+        public long Id { get; set; }
+        public string Name { get; set; }
    
+    }
 }

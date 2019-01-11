@@ -4,8 +4,14 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using TrainingCentreManagement.Models.EntityModels;
-using TrainingCentreManagement.Models.EntityModels.BaseEntities;
+using TrainingCentreManagement.Models.EntityModels.Batches;
+using TrainingCentreManagement.Models.EntityModels.Categories;
 using TrainingCentreManagement.Models.EntityModels.Courses;
+using TrainingCentreManagement.Models.EntityModels.IdentityEntities;
+using TrainingCentreManagement.Models.EntityModels.Institues;
+using TrainingCentreManagement.Models.EntityModels.Tags;
+using TrainingCentreManagement.Models.EntityModels.Trainees;
+using TrainingCentreManagement.Models.EntityModels.Trainers;
 using TrainingCentreManagement.Models.EntityModels.Trainings;
 
 namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
@@ -26,7 +32,7 @@ namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
             if (!optionsBuilder.IsConfigured)
             {
 
-                optionsBuilder .UseSqlServer("Server=MAMUN-LAPTOP-XI;Database=TrainingCenterDB;Trusted_Connection=True;");
+                optionsBuilder .UseSqlServer("Server=.\\SqlExpress;Database=TrainingCenterDB;Trusted_Connection=True;");
 
             }
         }

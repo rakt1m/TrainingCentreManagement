@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
-using TrainingCentreManagement.Models.EntityModels.BaseEntities;
+﻿using TrainingCentreManagement.Models.EntityModels.Trainings;
 
-namespace TrainingCentreManagement.Models.EntityModels
+namespace TrainingCentreManagement.Models.EntityModels.Tags
 {
     public class TrainingTag
     {

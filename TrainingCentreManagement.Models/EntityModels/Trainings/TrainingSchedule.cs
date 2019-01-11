@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TrainingCentreManagement.Models.EntityModels.BaseEntities;
+using TrainingCentreManagement.Models.EntityModels.Scheduls;
+using TrainingCentreManagement.Models.EntityModels.Trainings;
 
 public  class TrainingSchedule : Schedule
 {
