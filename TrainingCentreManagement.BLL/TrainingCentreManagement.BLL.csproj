@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Manager\**" />
+    <EmbeddedResource Remove="Manager\**" />
+    <None Remove="Manager\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+
+    <Folder Include="Contracts\" />
+  </ItemGroup>
+
+  <ItemGroup>
+
+    <ProjectReference Include="..\TrainingCentreManagement.Repositories\TrainingCentreManagement.Repositories.csproj" />
+  </ItemGroup>
+
+</Project>
