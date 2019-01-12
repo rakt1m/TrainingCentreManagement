@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TrainingCentreManagement.Models.EntityModels.Course>
+﻿@model IEnumerable<TrainingCentreManagement.Models.EntityModels.Trainings.Course>
 @{
     ViewData["Title"] = "Home Page";
 }
@@ -34,7 +34,7 @@
                 <img src="~/images/guitar0.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title">@item.Title</h5>
-                    <p class="card-text"> Duration : @item.Duration</p>
+                    <p class="card-text"> Description : @item.Description</p>
                     <p class="card-text">Course Fee : @item.Fee</p>
                     <input  type="button" value="Enroll Now"  id="@item.Id" class="btn btn-success" onclick="ViewEnrollForm(this.id)"/>
                     @*<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mymodal">
