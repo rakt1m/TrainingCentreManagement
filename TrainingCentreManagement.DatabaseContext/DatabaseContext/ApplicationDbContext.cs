@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using TrainingCentreManagement.Models.EntityModels;
 using TrainingCentreManagement.Models.EntityModels.Batches;
 using TrainingCentreManagement.Models.EntityModels.Categories;
-using TrainingCentreManagement.Models.EntityModels.Courses;
 using TrainingCentreManagement.Models.EntityModels.IdentityEntities;
 using TrainingCentreManagement.Models.EntityModels.Institues;
 using TrainingCentreManagement.Models.EntityModels.Tags;

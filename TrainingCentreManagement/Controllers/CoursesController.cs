@@ -8,7 +8,6 @@ using TrainingCentreManagement.BLL.Contracts;
 using TrainingCentreManagement.DatabaseContext.DatabaseContext;
 
 using TrainingCentreManagement.Models.EntityModels;
-using TrainingCentreManagement.Models.EntityModels.Courses;
 using TrainingCentreManagement.Models.EntityModels.Trainings;
 
 namespace TrainingCentreManagement.Controllers

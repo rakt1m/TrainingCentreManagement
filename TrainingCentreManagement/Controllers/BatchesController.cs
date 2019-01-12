@@ -48,7 +48,7 @@ namespace TrainingCentreManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Title,TotalSeats,RegistrationStart,RegistrationEnd,ClassStart")] Batch batch)
+        public IActionResult Create(Batch batch)
         {
             if (ModelState.IsValid)
             {
@@ -75,7 +75,7 @@ namespace TrainingCentreManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Title,TotalSeats,RegistrationStart,RegistrationEnd,ClassStart")] Batch batch)
+        public IActionResult Edit(int id, Batch batch)
         {
             if (id != batch.Id)
             {

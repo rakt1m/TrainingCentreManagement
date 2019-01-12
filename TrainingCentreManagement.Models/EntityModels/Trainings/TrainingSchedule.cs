@@ -1,14 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TrainingCentreManagement.Models.EntityModels.Scheduls;
-using TrainingCentreManagement.Models.EntityModels.Trainings;
+using TrainingCentreManagement.Models.Enums;
 
-public  class TrainingSchedule : Schedule
+namespace TrainingCentreManagement.Models.EntityModels.Trainings
 {
-    public TrainingSchedule()
+    public  class TrainingSchedule : Schedule
     {
-        ScheduleTypeId = (int)ScheduleTypeEnum.Training;
-    }
+        public TrainingSchedule()
+        {
+            ScheduleTypeId = (int)ScheduleTypeEnum.Training;
+        }
 
-    [Required]
-   public Training Training { get; set; }
+        [Required]
+        public Training Training { get; set; }
+    }
 }

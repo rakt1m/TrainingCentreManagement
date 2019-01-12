@@ -1,5 +1,8 @@
-﻿public enum ScheduleTypeEnum
+﻿namespace TrainingCentreManagement.Models.Enums
 {
-    Training=1,
-    Batch=2
+    public enum ScheduleTypeEnum
+    {
+        Training=1,
+        Batch=2
+    }
 }

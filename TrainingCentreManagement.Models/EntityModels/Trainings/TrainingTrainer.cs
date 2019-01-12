@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using TrainingCentreManagement.Models.EntityModels.Trainers;
-using TrainingCentreManagement.Models.EntityModels.Trainings;
+﻿using TrainingCentreManagement.Models.EntityModels.Trainers;
 
-namespace TrainingCentreManagement.Models.EntityModels.Courses
+namespace TrainingCentreManagement.Models.EntityModels.Trainings
 {
     public class TrainingTrainer:TrainerAllocation
     {

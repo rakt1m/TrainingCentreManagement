@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 using TrainingCentreManagement.Models.EntityModels;
-using TrainingCentreManagement.Models.EntityModels.Courses;
 using TrainingCentreManagement.Models.EntityModels.Trainings;
 
 namespace TrainingCentreManagement.Models.ViewModels

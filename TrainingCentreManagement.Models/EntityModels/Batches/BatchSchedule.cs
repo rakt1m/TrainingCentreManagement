@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using TrainingCentreManagement.Models.EntityModels.Scheduls;
+using TrainingCentreManagement.Models.Enums;
 
 namespace TrainingCentreManagement.Models.EntityModels.Batches
 {
