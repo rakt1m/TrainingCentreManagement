@@ -11,6 +11,8 @@ namespace TrainingCentreManagement.Models.EntityModels.Batches
         public long Id { get; set; }
 
         public string Name { get; set; }
+
+        public bool IsNameDisplayed { get; set; }
         public string EntityDescription { get; set; }
         public string Description { get; set; }
 

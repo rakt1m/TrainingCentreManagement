@@ -3,19 +3,21 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrainingCentreManagement.DatabaseContext.DatabaseContext;
 
 namespace TrainingCentreManagement.DatabaseContext.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190112120038_TrainingOperationAndScheduleRemove_From_Training")]
+    partial class TrainingOperationAndScheduleRemove_From_Training
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
+                .HasAnnotation("ProductVersion", "2.2.0-rtm-35687")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -147,9 +149,7 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
 
                     b.Property<bool>("IsFree");
 
-
                     b.Property<bool>("IsNameDisplayed");
-
 
                     b.Property<string>("Name");
 
@@ -230,7 +230,6 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
                     b.HasIndex("ParentId1");
 
                     b.ToTable("Categories");
-
                 });
 
             modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.Categories.TrainingCategory", b =>
@@ -255,7 +254,6 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
 
                     b.ToTable("TrainingCategory");
                 });
-
 
             modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.IdentityEntities.AppUser", b =>
                 {
@@ -384,9 +382,7 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
 
                     b.Property<string>("Name");
 
-
-                    b.Property<long>("ScedhuleTypeId");
-
+                    b.Property<long?>("ScedhuleTypeId");
 
                     b.Property<long>("ScheduleTypeId");
 
@@ -560,7 +556,6 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
 
                     b.Property<DateTime>("CreatedAt");
 
-
                     b.Property<string>("Description");
 
                     b.Property<string>("Discriminator")
@@ -602,19 +597,9 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
 
             modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.Trainings.Course", b =>
                 {
-
                     b.HasBaseType("TrainingCentreManagement.Models.EntityModels.Trainings.Training");
-
 
                     b.HasDiscriminator().HasValue("Course");
-                });
-
-
-            modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.Trainings.Workshop", b =>
-                {
-                    b.HasBaseType("TrainingCentreManagement.Models.EntityModels.Trainings.Training");
-
-                    b.HasDiscriminator().HasValue("Workshop");
                 });
 
             modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.Trainings.Workshop", b =>
@@ -721,7 +706,6 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
                 });
 
             modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.Scheduls.Schedule", b =>
-
                 {
                     b.HasOne("TrainingCentreManagement.Models.EntityModels.Master.ScedhuleType", "ScedhuleType")
                         .WithMany()
@@ -738,7 +722,6 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
 
             modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.Tags.TrainingTag", b =>
                 {
-
                     b.HasOne("TrainingCentreManagement.Models.EntityModels.Tags.Tag", "Tag")
                         .WithMany("Trainings")
                         .HasForeignKey("TagId1")
@@ -752,7 +735,6 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
 
             modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.Trainings.Training", b =>
                 {
-
                     b.HasOne("TrainingCentreManagement.Models.EntityModels.Master.TrainingType", "TrainingType")
                         .WithMany()
                         .HasForeignKey("TrainingTypeId")
