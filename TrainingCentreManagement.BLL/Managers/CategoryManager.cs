@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using TrainingCentreManagement.BLL.Contracts;
 using TrainingCentreManagement.Models.EntityModels;
+using TrainingCentreManagement.Models.EntityModels.Categories;
 using TrainingCentreManagement.Repositories.Contracts;
 
 namespace TrainingCentreManagement.BLL.Managers

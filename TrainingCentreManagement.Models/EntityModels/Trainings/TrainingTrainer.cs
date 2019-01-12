@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TrainingCentreManagement.Models.EntityModels.BaseEntities;
 using TrainingCentreManagement.Models.EntityModels.Trainers;
+using TrainingCentreManagement.Models.EntityModels.Trainings;
 
 namespace TrainingCentreManagement.Models.EntityModels.Courses
 {

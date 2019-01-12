@@ -1,9 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 using TrainingCentreManagement.Models.Contracts;
 
-namespace TrainingCentreManagement.Models.EntityModels
+namespace TrainingCentreManagement.Models.EntityModels.Location
 {
     public class District:IEntity
 

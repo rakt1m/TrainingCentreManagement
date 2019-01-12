@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using TrainingCentreManagement.Models.Contracts;
-using TrainingCentreManagement.Models.EntityModels.Trainings;
+using TrainingCentreManagement.Models.EntityModels.Batches;
+using TrainingCentreManagement.Models.EntityModels.Categories;
+using TrainingCentreManagement.Models.EntityModels.Master;
+using TrainingCentreManagement.Models.EntityModels.Tags;
 
-namespace TrainingCentreManagement.Models.EntityModels.BaseEntities
+namespace TrainingCentreManagement.Models.EntityModels.Trainings
 {
     public abstract class Training:IEntity
     {

@@ -1,13 +1,16 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using TrainingCentreManagement.Models.EntityModels;
+using TrainingCentreManagement.Models.EntityModels.Scheduls;
 
-public class BatchSchedule : Schedule
+namespace TrainingCentreManagement.Models.EntityModels.Batches
 {
-    public BatchSchedule()
+    public class BatchSchedule : Schedule
     {
-        ScheduleTypeId = (int) ScheduleTypeEnum.Batch;
-    }
+        public BatchSchedule()
+        {
+            ScheduleTypeId = (int) ScheduleTypeEnum.Batch;
+        }
 
-    [Required]
-    public Batch Batch { get; set; }
+        [Required]
+        public Batch Batch { get; set; }
+    }
 }

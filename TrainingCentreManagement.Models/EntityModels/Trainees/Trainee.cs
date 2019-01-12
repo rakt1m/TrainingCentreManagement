@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using TrainingCentreManagement.Models.Contracts;
 
-namespace TrainingCentreManagement.Models.EntityModels
+namespace TrainingCentreManagement.Models.EntityModels.Trainees
 {
    public class Trainee:IEntity
     {

@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using TrainingCentreManagement.Models.Contracts;
-using TrainingCentreManagement.Models.EntityModels.BaseEntities;
-using TrainingCentreManagement.Models.EntityModels.Batches;
-using TrainingCentreManagement.Models.EntityModels.Courses;
+using TrainingCentreManagement.Models.EntityModels.Trainings;
 
-namespace TrainingCentreManagement.Models.EntityModels
+namespace TrainingCentreManagement.Models.EntityModels.Batches
 {
     public class Batch : IEntity, ITrainingOperationInfo
     {

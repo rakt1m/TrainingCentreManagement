@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TrainingCentreManagement.Models;
 using TrainingCentreManagement.Models.EntityModels;
+using TrainingCentreManagement.Models.EntityModels.IdentityEntities;
 
 namespace TrainingCentreManagement.Controllers
 {
