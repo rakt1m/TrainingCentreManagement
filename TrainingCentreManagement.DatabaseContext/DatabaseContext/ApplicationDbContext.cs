@@ -11,7 +11,7 @@ using TrainingCentreManagement.Models.EntityModels.Trainings;
 
 namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
 {
-    public class ApplicationDbContext : IdentityDbContext<AppUser>
+    public class ApplicationDbContext : IdentityDbContext<AppUser,AppRole,string>
     {
         public ApplicationDbContext()
         {
