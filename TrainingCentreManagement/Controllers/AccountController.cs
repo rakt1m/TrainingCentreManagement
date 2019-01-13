@@ -88,5 +88,7 @@ namespace TrainingCentreManagement.Controllers
         {
             return View();
         }
+
+        
     }
 }

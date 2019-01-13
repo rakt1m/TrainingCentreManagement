@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TrainingCentreManagement.BLL.Contracts;
-using TrainingCentreManagement.Models.EntityModels;
 using TrainingCentreManagement.Models.EntityModels.Batches;
 
 namespace TrainingCentreManagement.Controllers

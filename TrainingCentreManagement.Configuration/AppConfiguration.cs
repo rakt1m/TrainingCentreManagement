@@ -33,7 +33,7 @@ namespace TrainingCentreManagement.Configuration
             });
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ApplicationDbContext"), b => b.MigrationsAssembly("TrainingCentreManagement.DatabaseContext")));
 
-            services.AddIdentity<AppUser, IdentityRole>()
+            services.AddIdentity<AppUser, AppRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
@@ -78,6 +78,33 @@ namespace TrainingCentreManagement.Configuration
             services.AddTransient<ICategoryRepository, CategoryRepository>();
             services.AddTransient<ICategoryManager, CategoryManager>();
 
+            services.AddTransient<IBatchTrainerManager, BatchTrainerManager>();
+            services.AddTransient<IBatchTrainerRepository, BatchTrainerRepository>();
+
+            services.AddTransient<IScedhuleTypeManager, ScedhuleTypeManager>();
+            services.AddTransient<IScedhuleTypeRepository, ScedhuleTypeRepository>();
+
+            services.AddTransient<IScheduleManager, ScheduleManager>();
+            services.AddTransient<IScheduleRepository, ScheduleReopsitory>();
+
+            services.AddTransient<IScheduleDetailManager, ScheduleDetailManager>();
+            services.AddTransient<IScheduleDetailRepository, ScheduleDetailRepository>();
+
+            services.AddTransient<ITagManager, TagManager>();
+            services.AddTransient<ITagRepository, TagRepository>();
+            services.AddTransient<ITrainingManager, TrainingManager>();
+            services.AddTransient<ITrainingRepository, TrainingRepository>();
+
+            services.AddTransient<ITrainerAllocationTypeManager, TrainerAllocationTypeManager>();
+            services.AddTransient<ITrainerAllocationTypeRepository, TrainerAllocationTypeRepository>();
+            services.AddTransient<ITrainingTypeManager, TrainingTypeManager>();
+            services.AddTransient<ITrainingTypeRepository, TrainingTypeRepository>();
+
+            services.AddTransient<ITrainingCategoryManager, TrainingCategoryManager>();
+            services.AddTransient<ITrainingCategoryRepository, TrainingCategoryRepository>();
+
+            services.AddTransient<ITrainingTagManager, TrainingTagManager>();
+            services.AddTransient<ITrainingTagRepository, TrainingTagRepository>();
         }
     }
 }

@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using TrainingCentreManagement.BLL.Contracts;
 using TrainingCentreManagement.Models;
 
-
-namespace TIMSApp.Controllers
+namespace TrainingCentreManagement.Controllers
 {
     public class HomeController : Controller
     {
-        private ICourseManager _iCourseManager;
+        private readonly ICourseManager _iCourseManager;
         public HomeController(ICourseManager iCourseManager)
         {
             _iCourseManager = iCourseManager;

@@ -12,11 +12,6 @@
 
   <ItemGroup>
 
-    <Folder Include="Contracts\" />
-  </ItemGroup>
-
-  <ItemGroup>
-
     <ProjectReference Include="..\TrainingCentreManagement.DatabaseContext\TrainingCentreManagement.DatabaseContext.csproj" />
     <ProjectReference Include="..\TrainingCentreManagement.Models\TrainingCentreManagement.Models.csproj" />
   </ItemGroup>

@@ -5,6 +5,10 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <ProjectReference Include="..\TrainingCentreManagement.BLL\TrainingCentreManagement.BLL.csproj" />

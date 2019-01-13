@@ -3,21 +3,47 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TrainingCentreManagement.DatabaseContext.DatabaseContext;
 
 namespace TrainingCentreManagement.DatabaseContext.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190112113330_Add AppRole Model")]
+    partial class AddAppRoleModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.Property<string>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken();
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
+                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
@@ -123,8 +149,6 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
 
                     b.Property<bool>("IsFree");
 
-                    b.Property<bool>("IsNameDisplayed");
-
                     b.Property<string>("Name");
 
                     b.Property<DateTime?>("RegistrationEnd");
@@ -227,30 +251,6 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
                     b.HasIndex("TrainingId1");
 
                     b.ToTable("TrainingCategory");
-                });
-
-            modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.IdentityEntities.AppRole", b =>
-                {
-                    b.Property<string>("Id")
-                        .ValueGeneratedOnAdd();
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken();
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256);
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("AspNetRoles");
                 });
 
             modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.IdentityEntities.AppUser", b =>
@@ -380,7 +380,7 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<long?>("ScedhuleTypeId");
+                    b.Property<long>("ScedhuleTypeId");
 
                     b.Property<long>("ScheduleTypeId");
 
@@ -561,23 +561,43 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
 
                     b.Property<string>("EntityDescription");
 
+                    b.Property<decimal>("Fee");
+
+                    b.Property<bool>("HasBatches");
+
                     b.Property<bool>("IsActive");
+
+                    b.Property<bool>("IsFree");
 
                     b.Property<string>("Name");
 
                     b.Property<string>("Outline")
                         .IsRequired();
 
+                    b.Property<DateTime?>("RegistrationEnd");
+
+                    b.Property<DateTime?>("RegistrationStart");
+
                     b.Property<string>("ShortDescription");
 
                     b.Property<string>("Title")
                         .IsRequired();
+
+                    b.Property<int>("TotalCapacity");
+
+                    b.Property<long?>("TrainingScheduleId");
+
+                    b.Property<DateTime>("TrainingStart");
 
                     b.Property<long>("TrainingTypeId");
 
                     b.Property<DateTime>("UpdatedAt");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("TrainingScheduleId")
+                        .IsUnique()
+                        .HasFilter("[TrainingScheduleId] IS NOT NULL");
 
                     b.HasIndex("TrainingTypeId");
 
@@ -591,6 +611,13 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
                     b.HasBaseType("TrainingCentreManagement.Models.EntityModels.Scheduls.Schedule");
 
                     b.HasDiscriminator().HasValue("BatchSchedule");
+                });
+
+            modelBuilder.Entity("TrainingSchedule", b =>
+                {
+                    b.HasBaseType("TrainingCentreManagement.Models.EntityModels.Scheduls.Schedule");
+
+                    b.HasDiscriminator().HasValue("TrainingSchedule");
                 });
 
             modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.Trainings.Course", b =>
@@ -609,7 +636,7 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
-                    b.HasOne("TrainingCentreManagement.Models.EntityModels.IdentityEntities.AppRole")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -633,7 +660,7 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
-                    b.HasOne("TrainingCentreManagement.Models.EntityModels.IdentityEntities.AppRole")
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole")
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -707,7 +734,8 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
                 {
                     b.HasOne("TrainingCentreManagement.Models.EntityModels.Master.ScedhuleType", "ScedhuleType")
                         .WithMany()
-                        .HasForeignKey("ScedhuleTypeId");
+                        .HasForeignKey("ScedhuleTypeId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.Scheduls.ScheduleDetail", b =>
@@ -733,6 +761,11 @@ namespace TrainingCentreManagement.DatabaseContext.Migrations
 
             modelBuilder.Entity("TrainingCentreManagement.Models.EntityModels.Trainings.Training", b =>
                 {
+                    b.HasOne("TrainingSchedule", "TrainingSchedule")
+                        .WithOne("Training")
+                        .HasForeignKey("TrainingCentreManagement.Models.EntityModels.Trainings.Training", "TrainingScheduleId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.HasOne("TrainingCentreManagement.Models.EntityModels.Master.TrainingType", "TrainingType")
                         .WithMany()
                         .HasForeignKey("TrainingTypeId")

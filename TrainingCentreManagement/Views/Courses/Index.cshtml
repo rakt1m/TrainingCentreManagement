@@ -1,5 +1,4 @@
-﻿@using TrainingCentreManagement.Models.EntityModels
-@model IEnumerable<TrainingCentreManagement.Models.EntityModels.Course>
+﻿@model IEnumerable<TrainingCentreManagement.Models.EntityModels.Trainings.Course>
 
 @{
     ViewData["Title"] = "Index";
@@ -14,16 +13,34 @@
     <thead>
         <tr>
             <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EntityDescription)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Title)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Outline)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Fee)
+                @Html.DisplayNameFor(model => model.TrainingType)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Duration)
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ShortDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedAt)
             </th>
             <th></th>
         </tr>
@@ -32,16 +49,34 @@
 @foreach (var item in Model) {
         <tr>
             <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntityDescription)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.Title)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Outline)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Fee)
+                @Html.DisplayFor(modelItem => item.TrainingType.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Duration)
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ShortDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedAt)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

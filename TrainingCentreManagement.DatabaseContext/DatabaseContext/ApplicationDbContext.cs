@@ -1,9 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using TrainingCentreManagement.Models.EntityModels;
 using TrainingCentreManagement.Models.EntityModels.Batches;
 using TrainingCentreManagement.Models.EntityModels.Categories;
 using TrainingCentreManagement.Models.EntityModels.IdentityEntities;
@@ -15,7 +11,7 @@ using TrainingCentreManagement.Models.EntityModels.Trainings;
 
 namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
 {
-    public class ApplicationDbContext : IdentityDbContext<AppUser>
+    public class ApplicationDbContext : IdentityDbContext<AppUser,AppRole,string>
     {
         public ApplicationDbContext()
         {
@@ -44,10 +40,7 @@ namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
             modelBuilder.Entity<TrainingCategory>().HasKey(c => c.CategoryId);
             modelBuilder.Entity<TrainingTag>().HasKey(c => c.TrainingId);
             modelBuilder.Entity<TrainingTag>().HasKey(c => c.TagId);
-            modelBuilder.Entity<Training>().HasOne(c => c.TrainingSchedule)
-                .WithOne(c => c.Training)
-                .HasForeignKey<Training>(c=>c.TrainingScheduleId)
-                .OnDelete(DeleteBehavior.SetNull);
+
 
             modelBuilder.Entity<Batch>().HasOne(c => c.BatchSchedule)
                 .WithOne(c => c.Batch)

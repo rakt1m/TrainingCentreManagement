@@ -1,22 +1,27 @@
-@model TrainingCentreManagement.Models.EntityModels.Course
-
-﻿@using TrainingCentreManagement.Models.EntityModels
-
-
+﻿@model TrainingCentreManagement.Models.EntityModels.Trainings.Course
 
 @{
     ViewData["Title"] = "Create";
 }
 
+<h1>Create</h1>
 
-<h4 class="text-center">Add New Course</h4>
+<h4>Course</h4>
 <hr />
-<form asp-action="Create">
-    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
 <div class="row">
-    
-    <div class="col-md-6">
-      
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EntityDescription" class="control-label"></label>
+                <input asp-for="EntityDescription" class="form-control" />
+                <span asp-validation-for="EntityDescription" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Title" class="control-label"></label>
                 <input asp-for="Title" class="form-control" />
@@ -28,56 +33,42 @@
                 <span asp-validation-for="Outline" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="Fee" class="control-label"></label>
-                <input asp-for="Fee" class="form-control" />
-                <span asp-validation-for="Fee" class="text-danger"></span>
+                <label asp-for="TrainingTypeId" class="control-label"></label>
+                <select asp-for="TrainingTypeId" class ="form-control" asp-items="ViewBag.TrainingTypeId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Duration" class="control-label"></label>
-                <input asp-for="Duration" class="form-control" />
-                <span asp-validation-for="Duration" class="text-danger"></span>
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
             </div>
             <div class="form-group">
-
-                <label asp-for="IsLatest" class="control-label"></label>
-                <input asp-for="IsLatest" class="form-control" />
-                <span asp-validation-for="IsLatest" class="text-danger"></span>
+                <label asp-for="ShortDescription" class="control-label"></label>
+                <input asp-for="ShortDescription" class="form-control" />
+                <span asp-validation-for="ShortDescription" class="text-danger"></span>
             </div>
-           
-       
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="IsActive" /> @Html.DisplayNameFor(model => model.IsActive)
+                </label>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedAt" class="control-label"></label>
+                <input asp-for="CreatedAt" class="form-control" />
+                <span asp-validation-for="CreatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdatedAt" class="control-label"></label>
+                <input asp-for="UpdatedAt" class="form-control" />
+                <span asp-validation-for="UpdatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
     </div>
-    <div class="col-md-6">
-        <div class="form-group">
-            <label asp-for="IsUpComing" class="control-label"></label>
-            <input asp-for="IsUpComing" class="form-control" />
-            <span asp-validation-for="IsUpComing" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="IsOnGoing" class="control-label"></label>
-            <input asp-for="IsOnGoing" class="form-control" />
-            <span asp-validation-for="IsOnGoing" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="Tags" class="control-label"></label>
-            <input asp-for="Tags" class="form-control" />
-            <span asp-validation-for="Tags" class="text-danger"></span>
-        </div>
-        <div class="form-group">
-            <label asp-for="CategoryId" class="control-label"></label>
-            <select asp-for="CategoryId" class ="form-control" asp-items="ViewBag.CategoryId"></select>
-        </div>
-        <div class="form-group">
-
-            <input type="submit" value="Create" class="btn btn-primary" />
-        </div>
-    </div>
-    
 </div>
-</form>
+
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
