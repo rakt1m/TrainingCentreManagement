@@ -1,0 +1,26 @@
+.bp-element-social-links:before {
+  content: " ";
+  display: table; }
+
+.bp-element-social-links:after {
+  content: " ";
+  display: table;
+  clear: both; }
+
+.bp-element-social-links .socials {
+  list-style: none;
+  margin: 0 -5px;
+  display: flex; }
+  .bp-element-social-links .socials li {
+    margin: 0 5px; }
+    .bp-element-social-links .socials li a {
+      display: inline-block;
+      color: #999;
+      text-align: center;
+      width: 30px;
+      height: 30px;
+      font-size: 16px;
+      line-height: 30px;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      border-radius: 50%; }

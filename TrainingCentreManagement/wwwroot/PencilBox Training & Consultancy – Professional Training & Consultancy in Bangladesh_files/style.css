@@ -1,0 +1,37 @@
+td.list-item {
+	text-align: center;
+}
+
+.learn-press-course-current {
+	background: #f0f0f0;
+}
+.pmpro-no-buy-course + .purchase-course,
+.pmpro-no-buy-course + .enroll-course {
+	display: none !important;
+}
+#learn-press-pmpro-notice {
+	margin-bottom: 10px;
+	display: inline-block;
+}
+#learn-press-pmpro-notice + .purchase-course,
+#learn-press-pmpro-notice + .enroll-course {
+	display: inline-block;
+}
+#learn-press-pmpro-notice.purchase-course a {
+	cursor: pointer;
+	font-size: 1rem;
+	background: #1a1a1a;
+	border: 0;
+	border-radius: 2px;
+	color: #fff;
+	font-family: Montserrat, "Helvetica Neue", sans-serif;
+	font-weight: 700;
+	letter-spacing: 0.046875em;
+	line-height: 1;
+	padding: 0.84375em 0.875em 0.78125em;
+	text-transform: uppercase;
+}
+
+#learn-press-pmpro-notice.purchase-course a:hover {
+	background: #007acc;
+}

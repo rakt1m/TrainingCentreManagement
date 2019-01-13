@@ -1,0 +1,214 @@
+.bp-element-video-box.layout-1 {
+  padding: 174px 50px 205px;
+  position: relative;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: cover;
+  z-index: 1;
+  text-align: center; }
+  .bp-element-video-box.layout-1:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6); }
+  .bp-element-video-box.layout-1 .box-inner {
+    position: relative;
+    z-index: 1; }
+  .bp-element-video-box.layout-1 .subtitle {
+    font-size: 20px;
+    font-weight: 300;
+    letter-spacing: 4px;
+    color: #fff;
+    margin-bottom: 4px;
+    text-transform: uppercase; }
+  .bp-element-video-box.layout-1 .title {
+    font-size: 48px;
+    line-height: 1.6;
+    letter-spacing: 1.9px;
+    color: #fff;
+    margin: 0 0 37px;
+    text-transform: uppercase; }
+  .bp-element-video-box.layout-1 .video-button {
+    display: inline-block; }
+    .bp-element-video-box.layout-1 .video-button a {
+      margin: 0 15px;
+      display: inline-block;
+      text-transform: uppercase;
+      border: 1px solid; }
+    .bp-element-video-box.layout-1 .video-button .read-more-button, .bp-element-video-box.layout-1 .video-button .video-popup {
+      padding: 0 32px;
+      -webkit-border-radius: 25px;
+      -moz-border-radius: 25px;
+      border-radius: 25px;
+      line-height: 40px;
+      font-size: 14px;
+      color: #fff; }
+
+.bp-element-video-box.layout-2 {
+  position: relative;
+  display: inline-block; }
+  .bp-element-video-box.layout-2 .background {
+    width: 100%; }
+  .bp-element-video-box.layout-2 .content {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 0;
+    background: rgba(37, 37, 37, 0.7);
+    padding: 0 15px 30px 15px; }
+    .bp-element-video-box.layout-2 .content .btn-open-video {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+      color: #fff;
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: #f8b944;
+      transition: all 0.2s;
+      margin-left: auto;
+      margin-right: auto;
+      margin-top: -38px;
+      margin-bottom: 30px; }
+      .bp-element-video-box.layout-2 .content .btn-open-video:hover {
+        background: #f6a713; }
+    .bp-element-video-box.layout-2 .content .title {
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 1.4;
+      color: #fff;
+      text-transform: uppercase;
+      text-align: center; }
+    .bp-element-video-box.layout-2 .content .description {
+      font-weight: 300;
+      font-size: 16px;
+      line-height: 1.6;
+      color: #cacaca;
+      text-align: center; }
+
+.bp-element-video-box.layout-3 .video-box {
+  position: relative;
+  margin-bottom: 38px; }
+  .bp-element-video-box.layout-3 .video-box .overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(37, 37, 37, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+    .bp-element-video-box.layout-3 .video-box .overlay .btn-open-video {
+      width: 127px;
+      height: 127px;
+      text-align: center;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      line-height: 127px;
+      border-radius: 50%;
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      -webkit-transition: all .3s;
+      -khtml-transition: all .3s;
+      -moz-transition: all .3s;
+      -ms-transition: all .3s;
+      -o-transition: all .3s;
+      transition: all .3s;
+      color: rgba(255, 255, 255, 0.6); }
+      .bp-element-video-box.layout-3 .video-box .overlay .btn-open-video i {
+        font-size: 108px;
+        padding-left: 17px; }
+      .bp-element-video-box.layout-3 .video-box .overlay .btn-open-video:hover {
+        width: 140px;
+        height: 140px; }
+
+.bp-element-video-box.layout-4 {
+  width: 700px;
+  max-width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+  position: relative; }
+  .bp-element-video-box.layout-4 .video-box .overlay {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(17, 17, 17, 0.75); }
+    .bp-element-video-box.layout-4 .video-box .overlay .btn-open-video {
+      display: flex !important;
+      justify-content: center;
+      align-items: center;
+      width: 57px;
+      height: 57px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.6);
+      font-size: 45px;
+      color: rgba(255, 255, 255, 0.6);
+      padding-left: 5px;
+      -webkit-transition: all .3s;
+      -khtml-transition: all .3s;
+      -moz-transition: all .3s;
+      -ms-transition: all .3s;
+      -o-transition: all .3s;
+      transition: all 0.3s; }
+
+.bp-element-video-box.layout-5 .video-box {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 358px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  position: relative;
+  z-index: 1;
+  box-shadow: 19px 23px 15px 0px rgba(105, 105, 105, 0.1); }
+  .bp-element-video-box.layout-5 .video-box .overlay {
+    content: '';
+    display: block;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    background: #4c71b3;
+    background: -webkit-linear-gradient(left, #4c71b3, #de4659);
+    background: -o-linear-gradient(left, #4c71b3, #de4659);
+    background: -moz-linear-gradient(left, #4c71b3, #de4659);
+    background: linear-gradient(left, #4c71b3, #de4659);
+    opacity: .75; }
+  .bp-element-video-box.layout-5 .video-box .btn-open-video {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid #fff;
+    font-size: 32px;
+    line-height: 1;
+    color: #fff;
+    padding-left: 5px;
+    transition: all 0.3s; }
+    .bp-element-video-box.layout-5 .video-box .btn-open-video:hover {
+      border-color: #efc452;
+      color: #efc452; }
+  .bp-element-video-box.layout-5 .video-box .title {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 1.8;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    margin-top: 12px; }
