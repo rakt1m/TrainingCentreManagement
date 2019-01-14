@@ -27,7 +27,7 @@ namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
             if (!optionsBuilder.IsConfigured)
             {
 
-                optionsBuilder .UseSqlServer("Server=RAKTIM-PC;Database=TrainingCenterDB;Trusted_Connection=True;");
+                optionsBuilder .UseSqlServer("Server=HKG_SOFTWARE;Database=TrainingCenterDB;Trusted_Connection=True;");
 
             }
         }
