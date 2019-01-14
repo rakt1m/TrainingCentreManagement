@@ -8,7 +8,7 @@ namespace TrainingCentreManagement.BLL.Contracts
         bool Update(T entity);
         bool Remove(T entity);
 
-        T GetById(int id);
+        T GetById(long? id);
         ICollection<T> GetAll();
     }
 }

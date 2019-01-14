@@ -1,4 +1,4 @@
-﻿@model TrainingCentreManagement.Models.EntityModels.Category
+﻿@model TrainingCentreManagement.Models.EntityModels.Categories.Category
 
 @{
     ViewData["Title"] = "Edit";
@@ -18,6 +18,17 @@
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
+            <div class="form-group">
+                <label asp-for="EntityDescription" class="control-label"></label>
+                <input asp-for="EntityDescription" class="form-control" />
+                <span asp-validation-for="EntityDescription" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ParentId" class="control-label"></label>
+                <input asp-for="ParentId" class="form-control" />
+                <span asp-validation-for="ParentId" class="text-danger"></span>
+            </div>
+          
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

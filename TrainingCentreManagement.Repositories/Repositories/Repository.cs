@@ -24,7 +24,7 @@ namespace TrainingCentreManagement.Repositories.Repositories
             return db.SaveChanges() > 0;
         }
 
-        public virtual T GetById(int id)
+        public virtual T GetById(long? id)
         {
             return Table.Find(id);
 

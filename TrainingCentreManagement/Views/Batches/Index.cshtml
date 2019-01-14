@@ -1,5 +1,4 @@
-﻿@using TrainingCentreManagement.Models.EntityModels
-@model IEnumerable<TrainingCentreManagement.Models.EntityModels.Batch>
+﻿@model IEnumerable<TrainingCentreManagement.Models.EntityModels.Batches.Batch>
 
 @{
     ViewData["Title"] = "Index";
@@ -14,10 +13,19 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Title)
+                @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.TotalSeats)
+                @Html.DisplayNameFor(model => model.IsNameDisplayed)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EntityDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.TotalCapacity)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.RegistrationStart)
@@ -26,7 +34,25 @@
                 @Html.DisplayNameFor(model => model.RegistrationEnd)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ClassStart)
+                @Html.DisplayNameFor(model => model.TrainingStart)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatchSchedule)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Training)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsFree)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedAt)
             </th>
             <th></th>
         </tr>
@@ -35,10 +61,19 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Title)
+                @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.TotalSeats)
+                @Html.DisplayFor(modelItem => item.IsNameDisplayed)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntityDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TotalCapacity)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.RegistrationStart)
@@ -47,7 +82,25 @@
                 @Html.DisplayFor(modelItem => item.RegistrationEnd)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ClassStart)
+                @Html.DisplayFor(modelItem => item.TrainingStart)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BatchSchedule.Discriminator)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Training.Discriminator)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsFree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fee)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedAt)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

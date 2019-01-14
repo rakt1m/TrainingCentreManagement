@@ -27,7 +27,7 @@ namespace TrainingCentreManagement.BLL.Managers
             return _repository.Remove(entity);
         }
 
-        public virtual T GetById(int id)
+        public virtual T GetById(long? id)
         {
             return _repository.GetById(id);
         }

@@ -2,18 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TrainingCentreManagement.BLL.Contracts;
 using TrainingCentreManagement.DatabaseContext.DatabaseContext;
-using TrainingCentreManagement.Models.EntityModels;
 using TrainingCentreManagement.Models.EntityModels.Categories;
 
 namespace TrainingCentreManagement.Controllers
 {
-    [Authorize(Roles="Admin")]
     public class CategoriesController : Controller
     {
         private readonly ICategoryManager _iCategoryManager;
@@ -24,17 +21,21 @@ namespace TrainingCentreManagement.Controllers
         }
 
         // GET: Categories
-        public IActionResult Index()
+        public  IActionResult Index()
         {
-            return View(_iCategoryManager.GetAll());
+            return View( _iCategoryManager.GetAll());
         }
 
         // GET: Categories/Details/5
-        public IActionResult Details(int id)
+        public IActionResult Details(long? id)
         {
-           
+            if (id == null)
+            {
+                return NotFound();
+            }
 
             var category = _iCategoryManager.GetById(id);
+               
             if (category == null)
             {
                 return NotFound();
@@ -58,6 +59,8 @@ namespace TrainingCentreManagement.Controllers
         {
             if (ModelState.IsValid)
             {
+                category.CreatedAt=DateTime.Now;
+                category.UpdatedAt=DateTime.Now;
                 _iCategoryManager.Add(category);
                
                 return RedirectToAction(nameof(Index));
@@ -66,9 +69,12 @@ namespace TrainingCentreManagement.Controllers
         }
 
         // GET: Categories/Edit/5
-        public IActionResult Edit(int id)
+        public IActionResult Edit(long? id)
         {
-           
+            if (id == null)
+            {
+                return NotFound();
+            }
 
             var category = _iCategoryManager.GetById(id);
             if (category == null)
@@ -83,7 +89,7 @@ namespace TrainingCentreManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id,Category category)
+        public IActionResult Edit(long id, Category category)
         {
             if (id != category.Id)
             {
@@ -94,8 +100,9 @@ namespace TrainingCentreManagement.Controllers
             {
                 try
                 {
+                    category.UpdatedAt = DateTime.Now;
                     _iCategoryManager.Update(category);
-                    
+                   
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -114,9 +121,12 @@ namespace TrainingCentreManagement.Controllers
         }
 
         // GET: Categories/Delete/5
-        public IActionResult Delete(int id)
+        public IActionResult Delete(long? id)
         {
-            
+            if (id == null)
+            {
+                return NotFound();
+            }
 
             var category = _iCategoryManager.GetById(id);
             if (category == null)
@@ -130,7 +140,7 @@ namespace TrainingCentreManagement.Controllers
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(long id)
         {
             var category = _iCategoryManager.GetById(id);
             _iCategoryManager.Remove(category);

@@ -7,7 +7,7 @@ namespace TrainingCentreManagement.Repositories.Contracts
         bool Add(T entity);
         bool Update(T entity);
         bool Remove(T entity);
-        T GetById(int id);
+        T GetById(long? id);
         ICollection<T> GetAll();
     }
 }
