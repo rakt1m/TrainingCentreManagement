@@ -1,10 +1,14 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TrainingCentreManagement.BLL.Contracts;
+using TrainingCentreManagement.DatabaseContext.DatabaseContext;
+using TrainingCentreManagement.Models.EntityModels.Master;
 using TrainingCentreManagement.Models.EntityModels.Trainings;
 
 namespace TrainingCentreManagement.Controllers
@@ -12,27 +16,31 @@ namespace TrainingCentreManagement.Controllers
     [Authorize(Roles = "Admin")]
     public class CoursesController : Controller
     {
+        private readonly ITrainingManager _iTrainingManager;
         private readonly ICourseManager _iCourseManager;
+        private readonly ITrainingTypeManager _iTrainingTypeManager;
 
-        private readonly ICategoryManager _iCategoryManager;
-
-        public CoursesController(ICourseManager iCourseManager, ICategoryManager iCategoryManager)
+        public CoursesController(ITrainingManager iTrainingManager,ITrainingTypeManager iTrainingTypeManager,ICourseManager iCourseManager)
         {
+            _iTrainingManager = iTrainingManager;
+            _iTrainingTypeManager = iTrainingTypeManager;
             _iCourseManager = iCourseManager;
-            _iCategoryManager = iCategoryManager;
-
         }
 
         // GET: Courses
         public IActionResult Index()
         {
-            return View(_iCourseManager.GetAll().ToList());
+            var courses = _iCourseManager.GetAll().ToList();
+            return View(courses);
         }
 
         // GET: Courses/Details/5
-        public IActionResult Details(int id)
+        public IActionResult Details(long? id)
         {
-
+            if (id == null)
+            {
+                return NotFound();
+            }
 
             var course = _iCourseManager.GetById(id);
             if (course == null)
@@ -46,14 +54,8 @@ namespace TrainingCentreManagement.Controllers
         // GET: Courses/Create
         public IActionResult Create()
         {
-
-            ViewBag.CategoryId = _iCategoryManager.GetAll()
-                .Select(c => new SelectListItem
-                {
-                    Value = c.Id.ToString(),
-                    Text = c.Name
-                }).ToList();
-          return View();
+            ViewData["TrainingTypeId"] = new SelectList(_iTrainingTypeManager.GetAll(), "Id", "Name");
+            return View();
         }
 
         // POST: Courses/Create
@@ -61,38 +63,31 @@ namespace TrainingCentreManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-       
-
         public IActionResult Create(Course course)
-
         {
             if (ModelState.IsValid)
             {
                 _iCourseManager.Add(course);
                 return RedirectToAction(nameof(Index));
             }
-
-            ViewBag.CategoryId = _iCategoryManager.GetAll()
-                .Select(c => new SelectListItem
-                {
-                    Value = c.Id.ToString(),
-                    Text = c.Name
-                }).ToList();
-
+            ViewData["TrainingTypeId"] = new SelectList(_iTrainingTypeManager.GetAll(), "Id", "Name", course.TrainingTypeId);
             return View(course);
         }
 
         // GET: Courses/Edit/5
-        public IActionResult Edit(int id)
+        public IActionResult Edit(long? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-
-            var course = _iCourseManager.GetById(id);
+            var course =_iCourseManager.GetById(id);
             if (course == null)
             {
                 return NotFound();
             }
+            ViewData["TrainingTypeId"] = new SelectList(_iTrainingTypeManager.GetAll(), "Id", "Name", course.TrainingTypeId);
             return View(course);
         }
 
@@ -101,10 +96,7 @@ namespace TrainingCentreManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-
-
-        public IActionResult Edit(int id,Course course)
-
+        public IActionResult Edit(long id, Course course)
         {
             if (id != course.Id)
             {
@@ -116,7 +108,7 @@ namespace TrainingCentreManagement.Controllers
                 try
                 {
                     _iCourseManager.Update(course);
-                    
+                   
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -131,12 +123,17 @@ namespace TrainingCentreManagement.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["TrainingTypeId"] = new SelectList(_iTrainingTypeManager.GetAll(), "Id", "Name", course.TrainingTypeId);
             return View(course);
         }
 
         // GET: Courses/Delete/5
-        public IActionResult Delete(int id)
+        public IActionResult Delete(long? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
             var course = _iCourseManager.GetById(id);
             if (course == null)
@@ -150,10 +147,11 @@ namespace TrainingCentreManagement.Controllers
         // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public IActionResult DeleteConfirmed(long id)
         {
             var course = _iCourseManager.GetById(id);
             _iCourseManager.Remove(course);
+          
             return RedirectToAction(nameof(Index));
         }
 
