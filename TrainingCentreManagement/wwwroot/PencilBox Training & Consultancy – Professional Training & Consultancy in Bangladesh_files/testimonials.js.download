@@ -1,0 +1,178 @@
+(function ($) {
+    "use strict";
+
+    $(document).ready(function () {
+
+        slick_testimonial();
+        slick_testimonial_layout7();
+
+        var $testimonials = $('.bp-element-testimonials.layout-slider-1, .bp-element-testimonials.layout-slider-6, .bp-element-testimonials.layout-slider-7');
+        $testimonials.each(function () {
+            var elem = $(this),
+                items_visible = $(elem).data('items-visible'),
+                items_tablet = $(elem).data('items-tablet'),
+                items_mobile = $(elem).data('items-mobile'),
+                slider_for = $(elem).find('.slider-for'),
+                slider_nav = $(elem).find('.slider-nav');
+
+            if (typeof items_visible === 'undefined') {
+                items_visible = 1;
+            }
+
+            slider_nav.slick({
+                asNavFor: slider_for,
+                centerMode: true,
+                focusOnSelect: true,
+                centerPadding: '0',
+                arrows: false,
+                dots: true,
+            });
+            slider_for.slick({
+                slidesToShow: items_visible,
+                responsive: [
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: items_tablet
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: items_mobile
+                        }
+                    }
+                ],
+                // slidesToScroll: 1,
+                arrows: true,
+                asNavFor: slider_nav,
+                dots: false,
+                prevArrow:  '<button type="button" class="slick-prev"><i class="ion-ios-arrow-left"></i></button>',
+                nextArrow: ' <button type="button" class="slick-next"><i class="ion-ios-arrow-right"></i></button>',
+            });
+        });
+
+    });
+
+    /*
+    *   layout 7
+    * */
+
+    var slick_testimonial_layout7 = function () {
+        var $testimonials = $('.bp-element-testimonials.layout-slider-7');
+        $testimonials.each(function () {
+            var elem = $(this),
+                items_visible = $(elem).data('items-visible'),
+                items_tablet = $(elem).data('items-tablet'),
+                items_mobile = $(elem).data('items-mobile'),
+                slider_for = $(elem).find('.slider-for'),
+                slider_nav = $(elem).find('.slider-nav');
+
+            if (typeof items_visible === 'undefined') {
+                items_visible = 1;
+            }
+
+            slider_nav.slick({
+                asNavFor: slider_for,
+                centerMode: true,
+                focusOnSelect: true,
+                centerPadding: '0',
+                arrows: false,
+                dots: true,
+            });
+            slider_for.slick({
+                slidesToShow: items_visible,
+                responsive: [
+                    {
+                        breakpoint: 600,
+                        settings: {
+                            slidesToShow: items_tablet
+                        }
+                    },
+                    {
+                        breakpoint: 480,
+                        settings: {
+                            slidesToShow: items_mobile
+                        }
+                    }
+                ],
+                // slidesToScroll: 1,
+                arrows: true,
+                asNavFor: slider_nav,
+                dots: false,
+                appendArrows: $('.bp-element-testimonials.layout-slider-7').find('.info-wrap'),
+                prevArrow:  $('.bp-element-testimonials.layout-slider-7 .infor-left').find('.slick-prev'),
+                nextArrow: $('.bp-element-testimonials.layout-slider-7 .info-right').find('.slick-next'),
+            });
+        });
+    }
+
+    /**
+     * Slick slick_testimonial.
+     */
+    var slick_testimonial = function() {
+        var fadeSlide = false;
+        var autoScroll = false;
+        var speedAuto = 5000;
+        var showArrow = false;
+
+        $('.js-call-slick-testimonial').each(function(){
+            var wrapSlick = $(this);
+            var slideContent = $(this).find('.slide-content');
+            var slideThumb = $(this).find('.slide-thumb');
+
+            // Check show arrow
+            if($(this).find('.wrap-arrow-slick').length > 0) {
+                showArrow = true;
+            }
+
+            // Get data
+            speedAuto = Number($(this).data('speedauto'));
+
+            if($(this).data('fadeslide') == '1') {
+                fadeSlide = true;
+            } else {
+                fadeSlide = false;
+            }
+
+            if($(this).data('autoscroll') == '1') {
+                autoScroll = true;
+            } else {
+                autoScroll = false;
+            }
+
+            // Call slick
+            $($(slideContent).find('.slide-slick')).slick({
+                pauseOnFocus: false,
+                pauseOnHover: false,
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                asNavFor: '.slide-thumb .slide-slick',
+                fade: fadeSlide,
+                autoplay: autoScroll,
+                autoplaySpeed: speedAuto,
+                arrows: showArrow,
+                appendArrows: $(wrapSlick).find('.wrap-arrow-slick'),
+                prevArrow: $(wrapSlick).find('.prev-slick'),
+                nextArrow: $(wrapSlick).find('.next-slick'),
+                dots: false
+
+            });
+
+            $($(slideThumb).find('.slide-slick')).slick({
+                pauseOnFocus: false,
+                pauseOnHover: false,
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                asNavFor: '.slide-content .slide-slick',
+                fade: false,
+                arrows: false,
+                dots: false,
+                centerMode: true,
+                centerPadding: '5px',
+                focusOnSelect: true
+            });
+
+        });
+    };
+})(jQuery);

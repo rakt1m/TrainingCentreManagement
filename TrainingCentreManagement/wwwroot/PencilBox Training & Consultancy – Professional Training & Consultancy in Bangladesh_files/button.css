@@ -1,0 +1,53 @@
+.bp-element-button img {
+  max-width: unset;
+  height: initial; }
+
+.bp-element-button .btn {
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  border: 0;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: 0.8px; }
+
+.bp-element-button .btn-lg {
+  height: 85px;
+  line-height: 85px;
+  padding: 0 46px; }
+
+.bp-element-button .btn-normal {
+  height: 49px;
+  line-height: 49px;
+  padding: 0 37px; }
+  .bp-element-button .btn-normal.btn-outline {
+    line-height: 47px; }
+
+.bp-element-button.shape-round .btn {
+  border-radius: 30px; }
+
+.bp-element-button .style-gradient {
+  overflow: hidden;
+  position: relative;
+  z-index: 1; }
+  .bp-element-button .style-gradient:before {
+    content: '';
+    display: block;
+    width: 300%;
+    height: 100%;
+    border-radius: inherit;
+    position: absolute;
+    z-index: -1;
+    top: 0px;
+    right: -1px;
+    transition: all 0.3s;
+    background: #4c71b3;
+    background: -webkit-linear-gradient(left, #4c71b3, #df4658, #4c71b3, #df4658);
+    background: -o-linear-gradient(left, #4c71b3, #df4658, #4c71b3, #df4658);
+    background: -moz-linear-gradient(left, #4c71b3, #df4658, #4c71b3, #df4658);
+    background: linear-gradient(left, #4c71b3, #df4658, #4c71b3, #df4658); }
+  .bp-element-button .style-gradient:hover {
+    background: transparent; }
+    .bp-element-button .style-gradient:hover:before {
+      right: -100%; }

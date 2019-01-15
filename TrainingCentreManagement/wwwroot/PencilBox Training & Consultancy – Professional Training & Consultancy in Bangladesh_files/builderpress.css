@@ -1,0 +1,45 @@
+.align-center {
+  text-align: center; }
+
+.align-left {
+  text-align: left; }
+
+.align-right {
+  text-align: right; }
+
+.shape-round.btn-normal {
+  border-radius: 25px; }
+
+.btn-normal {
+  height: 50px; }
+
+.btn-small, .btn-normal, .btn-large {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  padding: 0 15px; }
+
+.vc_row {
+  position: relative; }
+  .vc_row .overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    content: ""; }
+  .vc_row > .wpb_column {
+    position: relative; }
+  .vc_row.bg_pos_bottom_center {
+    background-position: center bottom !important; }
+
+.wpb_column.bp-row-background-overlay .wpb_wrapper {
+  position: relative; }
+
+/*# sourceMappingURL=builderpress.css.map */
