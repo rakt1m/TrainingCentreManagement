@@ -57,6 +57,7 @@ namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<Trainee> Trainees { get; set; }
         public DbSet<Category> Categories { get; set; }
+      
           
     }
 }
