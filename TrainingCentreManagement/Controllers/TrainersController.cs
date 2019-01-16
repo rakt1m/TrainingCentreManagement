@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TrainingCentreManagement.BLL.Contracts;
 using TrainingCentreManagement.DatabaseContext.DatabaseContext;
 using TrainingCentreManagement.Models.EntityModels.Trainers;
 
@@ -14,81 +15,74 @@ namespace TrainingCentreManagement.Controllers
     [Authorize(Roles = "Admin")]
     public class TrainersController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ITrainerManager _iTrainerManager;
 
-        public TrainersController(ApplicationDbContext context)
+        public TrainersController(ITrainerManager iTrainerManager)
         {
-            _context = context;
+            _iTrainerManager = iTrainerManager;
         }
 
-        // GET: Trainers
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            return View(await _context.Trainers.ToListAsync());
+            var trainers = _iTrainerManager.GetAll().ToList();
+            return View(trainers);
         }
 
-        // GET: Trainers/Details/5
-        public async Task<IActionResult> Details(long? id)
+        public IActionResult Details(long? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var trainer = await _context.Trainers
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (trainer == null)
+            var trainers = _iTrainerManager.GetById(id);
+            if (trainers == null)
             {
                 return NotFound();
             }
 
-            return View(trainer);
+            return View(trainers);
         }
 
-        // GET: Trainers/Create
+
+        // GET: Trainees/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Trainers/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,EntityDescription,Phone,Email,Address,LinkedinProfile,CreatedAt,UpdatedAt")] Trainer trainer)
+        public IActionResult Create(Trainer trainer)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(trainer);
-                await _context.SaveChangesAsync();
+                _iTrainerManager.Add(trainer);
                 return RedirectToAction(nameof(Index));
             }
+
             return View(trainer);
         }
-
-        // GET: Trainers/Edit/5
-        public async Task<IActionResult> Edit(long? id)
+        public IActionResult Edit(long? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var trainer = await _context.Trainers.FindAsync(id);
+            var trainer = _iTrainerManager.GetById(id);
             if (trainer == null)
             {
                 return NotFound();
             }
+
             return View(trainer);
         }
-
-        // POST: Trainers/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Name,EntityDescription,Phone,Email,Address,LinkedinProfile,CreatedAt,UpdatedAt")] Trainer trainer)
+        public IActionResult Edit(long id, Trainer trainer)
         {
             if (id != trainer.Id)
             {
@@ -99,8 +93,8 @@ namespace TrainingCentreManagement.Controllers
             {
                 try
                 {
-                    _context.Update(trainer);
-                    await _context.SaveChangesAsync();
+                    _iTrainerManager.Update(trainer);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -115,19 +109,17 @@ namespace TrainingCentreManagement.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+
             return View(trainer);
         }
-
-        // GET: Trainers/Delete/5
-        public async Task<IActionResult> Delete(long? id)
+        public IActionResult Delete(long? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var trainer = await _context.Trainers
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var trainer = _iTrainerManager.GetById(id);
             if (trainer == null)
             {
                 return NotFound();
@@ -136,20 +128,21 @@ namespace TrainingCentreManagement.Controllers
             return View(trainer);
         }
 
-        // POST: Trainers/Delete/5
+
+        // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
+        public IActionResult DeleteConfirmed(long id)
         {
-            var trainer = await _context.Trainers.FindAsync(id);
-            _context.Trainers.Remove(trainer);
-            await _context.SaveChangesAsync();
+            var trainer = _iTrainerManager.GetById(id);
+            _iTrainerManager.Remove(trainer);
+
             return RedirectToAction(nameof(Index));
         }
 
         private bool TrainerExists(long id)
         {
-            return _context.Trainers.Any(e => e.Id == id);
+            return _iTrainerManager.GetAll().Any(e => e.Id == id);
         }
     }
 }
