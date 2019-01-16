@@ -1,38 +1,42 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using TrainingCentreManagement.BLL.Contracts;
-using TrainingCentreManagement.Models.EntityModels;
+using TrainingCentreManagement.DatabaseContext.DatabaseContext;
 using TrainingCentreManagement.Models.EntityModels.Trainees;
-using TrainingCentreManagement.Models.ViewModels;
 
 namespace TrainingCentreManagement.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class TraineesController : Controller
     {
-        private readonly ITraineeManager _iTraineeManager;
-        private readonly ICourseManager _iCourseManager;
+        private readonly ApplicationDbContext _context;
 
-        public TraineesController(ITraineeManager iTraineeManager,ICourseManager iCourseManager)
+        public TraineesController(ApplicationDbContext context)
         {
-            _iTraineeManager = iTraineeManager;
-            _iCourseManager = iCourseManager;
+            _context = context;
         }
 
         // GET: Trainees
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(_iTraineeManager.GetAll().ToList());
+            return View(await _context.Trainees.ToListAsync());
         }
 
         // GET: Trainees/Details/5
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(long? id)
         {
-           
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            var trainee = _iTraineeManager.GetById(id);
+            var trainee = await _context.Trainees
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (trainee == null)
             {
                 return NotFound();
@@ -52,23 +56,26 @@ namespace TrainingCentreManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name,Email,Phone,Address")] Trainee trainee)
+        public async Task<IActionResult> Create([Bind("Id,Name,EntityDescription,Email,Phone,Address,CreatedAt,UpdatedAt")] Trainee trainee)
         {
             if (ModelState.IsValid)
             {
-                _iTraineeManager.Add(trainee);
-               
+                _context.Add(trainee);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(trainee);
         }
 
         // GET: Trainees/Edit/5
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(long? id)
         {
-            
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            var trainee = _iTraineeManager.GetById(id);
+            var trainee = await _context.Trainees.FindAsync(id);
             if (trainee == null)
             {
                 return NotFound();
@@ -81,16 +88,19 @@ namespace TrainingCentreManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, [Bind("Id,Name,Email,Phone,Address")] Trainee trainee)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,Name,EntityDescription,Email,Phone,Address,CreatedAt,UpdatedAt")] Trainee trainee)
         {
-          
+            if (id != trainee.Id)
+            {
+                return NotFound();
+            }
 
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _iTraineeManager.Update(trainee);
-                    
+                    _context.Update(trainee);
+                    await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -109,11 +119,15 @@ namespace TrainingCentreManagement.Controllers
         }
 
         // GET: Trainees/Delete/5
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(long? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-
-            var trainee = _iTraineeManager.GetById(id);
+            var trainee = await _context.Trainees
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (trainee == null)
             {
                 return NotFound();
@@ -125,26 +139,17 @@ namespace TrainingCentreManagement.Controllers
         // POST: Trainees/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(long id)
         {
-            var trainee = _iTraineeManager.GetById(id);
-            _iTraineeManager.Remove(trainee);
-
+            var trainee = await _context.Trainees.FindAsync(id);
+            _context.Trainees.Remove(trainee);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool TraineeExists(long id)
         {
-            return _iTraineeManager.GetAll().Any(e => e.Id == id);
-        }
-
-        public IActionResult GetTraineeEnrollPartial(int courseId)
-        {
-            //var course = _iCourseManager.GetById(courseId);
-          TraineeEnrollViewModel model=new TraineeEnrollViewModel();
-            model.CourseId = courseId;
-            
-            return PartialView("_TraineeEnrollPartialView", model);
+            return _context.Trainees.Any(e => e.Id == id);
         }
     }
 }

@@ -1,10 +1,12 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using TrainingCentreManagement.BLL.Contracts;
-using TrainingCentreManagement.Models.EntityModels;
+using TrainingCentreManagement.DatabaseContext.DatabaseContext;
 using TrainingCentreManagement.Models.EntityModels.Institues;
 
 namespace TrainingCentreManagement.Controllers
@@ -12,25 +14,30 @@ namespace TrainingCentreManagement.Controllers
     [Authorize(Roles = "Admin")]
     public class InstitutesController : Controller
     {
-        private readonly IInstituteManager _iInstituteManager;
+       
+        private readonly ApplicationDbContext _context;
 
-        public InstitutesController(IInstituteManager iInstituteManager)
+        public InstitutesController(ApplicationDbContext context)
         {
-            _iInstituteManager = iInstituteManager;
+            _context = context;
         }
 
         // GET: Institutes
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View(_iInstituteManager.GetAll());
+            return View(await _context.Institutes.ToListAsync());
         }
 
         // GET: Institutes/Details/5
-        public IActionResult Details(int id)
+        public async Task<IActionResult> Details(long? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-
-            var institute = _iInstituteManager.GetById(id);
+            var institute = await _context.Institutes
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (institute == null)
             {
                 return NotFound();
@@ -50,22 +57,26 @@ namespace TrainingCentreManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("Id,Name,About,Phone,Email")] Institute institute)
+        public async Task<IActionResult> Create([Bind("Id,Name,EntityDescription,About,Phone,Email,AddressLine1,AddressLine2,Logo,CreatedAt,UpdatedAt")] Institute institute)
         {
             if (ModelState.IsValid)
             {
-                _iInstituteManager.Add(institute);
+                _context.Add(institute);
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(institute);
         }
 
         // GET: Institutes/Edit/5
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(long? id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-
-            var institute = _iInstituteManager.GetById(id);
+            var institute = await _context.Institutes.FindAsync(id);
             if (institute == null)
             {
                 return NotFound();
@@ -78,7 +89,7 @@ namespace TrainingCentreManagement.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,About,Phone,Email")] Institute institute)
+        public async Task<IActionResult> Edit(long id, [Bind("Id,Name,EntityDescription,About,Phone,Email,AddressLine1,AddressLine2,Logo,CreatedAt,UpdatedAt")] Institute institute)
         {
             if (id != institute.Id)
             {
@@ -89,7 +100,8 @@ namespace TrainingCentreManagement.Controllers
             {
                 try
                 {
-                    _iInstituteManager.Update(institute);
+                    _context.Update(institute);
+                    await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -108,11 +120,15 @@ namespace TrainingCentreManagement.Controllers
         }
 
         // GET: Institutes/Delete/5
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(long? id)
         {
-           
+            if (id == null)
+            {
+                return NotFound();
+            }
 
-            var institute = _iInstituteManager.GetById(id);
+            var institute = await _context.Institutes
+                .FirstOrDefaultAsync(m => m.Id == id);
             if (institute == null)
             {
                 return NotFound();
@@ -124,17 +140,17 @@ namespace TrainingCentreManagement.Controllers
         // POST: Institutes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public IActionResult DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(long id)
         {
-            var institute = _iInstituteManager.GetById(id);
-            _iInstituteManager.Remove(institute);
-            
+            var institute = await _context.Institutes.FindAsync(id);
+            _context.Institutes.Remove(institute);
+            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool InstituteExists(long id)
         {
-            return _iInstituteManager.GetAll().Any(e => e.Id == id);
+            return _context.Institutes.Any(e => e.Id == id);
         }
     }
 }

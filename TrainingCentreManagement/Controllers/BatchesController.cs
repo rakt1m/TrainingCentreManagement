@@ -12,7 +12,7 @@ using TrainingCentreManagement.Models.EntityModels.Trainings;
 
 namespace TrainingCentreManagement.Controllers
 {
-      [Authorize(Roles = "Admin")]
+    [Authorize(Roles = "Admin")]
     public class BatchesController : Controller
     {
         private readonly ApplicationDbContext _context;

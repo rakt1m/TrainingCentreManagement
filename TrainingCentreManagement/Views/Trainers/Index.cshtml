@@ -1,5 +1,4 @@
-﻿@using TrainingCentreManagement.Models.EntityModels
-@model IEnumerable<TrainingCentreManagement.Models.EntityModels.Trainer>
+﻿@model IEnumerable<TrainingCentreManagement.Models.EntityModels.Trainers.Trainer>
 
 @{
     ViewData["Title"] = "Index";
@@ -18,6 +17,9 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.EntityDescription)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.Phone)
             </th>
             <th>
@@ -29,6 +31,12 @@
             <th>
                 @Html.DisplayNameFor(model => model.LinkedinProfile)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedAt)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -37,6 +45,9 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EntityDescription)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Phone)
@@ -49,6 +60,12 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.LinkedinProfile)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedAt)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

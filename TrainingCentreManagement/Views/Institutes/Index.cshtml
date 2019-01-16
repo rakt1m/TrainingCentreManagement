@@ -1,9 +1,8 @@
-﻿@using TrainingCentreManagement.Models.EntityModels
-@model IEnumerable<TrainingCentreManagement.Models.EntityModels.Institute>
+﻿@model IEnumerable<TrainingCentreManagement.Models.EntityModels.Institues.Institute>
 
 @{
     ViewData["Title"] = "Index";
-  
+    Layout = "~/Views/Shared/_PartialLayout.cshtml";
 }
 
 <h1>Index</h1>
@@ -18,6 +17,9 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.EntityDescription)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.About)
             </th>
             <th>
@@ -25,6 +27,21 @@
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddressLine1)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AddressLine2)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Logo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreatedAt)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.UpdatedAt)
             </th>
             <th></th>
         </tr>
@@ -36,6 +53,9 @@
                 @Html.DisplayFor(modelItem => item.Name)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.EntityDescription)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.About)
             </td>
             <td>
@@ -43,6 +63,21 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddressLine1)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AddressLine2)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Logo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CreatedAt)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdatedAt)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

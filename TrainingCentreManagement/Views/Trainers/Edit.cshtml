@@ -1,8 +1,8 @@
-﻿@using TrainingCentreManagement.Models.EntityModels
-@model TrainingCentreManagement.Models.EntityModels.Trainer
+﻿@model TrainingCentreManagement.Models.EntityModels.Trainers.Trainer
 
 @{
     ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_PartialLayout.cshtml";
 }
 
 <h1>Edit</h1>
@@ -18,6 +18,11 @@
                 <label asp-for="Name" class="control-label"></label>
                 <input asp-for="Name" class="form-control" />
                 <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EntityDescription" class="control-label"></label>
+                <input asp-for="EntityDescription" class="form-control" />
+                <span asp-validation-for="EntityDescription" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Phone" class="control-label"></label>
@@ -38,6 +43,16 @@
                 <label asp-for="LinkedinProfile" class="control-label"></label>
                 <input asp-for="LinkedinProfile" class="form-control" />
                 <span asp-validation-for="LinkedinProfile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CreatedAt" class="control-label"></label>
+                <input asp-for="CreatedAt" class="form-control" />
+                <span asp-validation-for="CreatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdatedAt" class="control-label"></label>
+                <input asp-for="UpdatedAt" class="form-control" />
+                <span asp-validation-for="UpdatedAt" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
