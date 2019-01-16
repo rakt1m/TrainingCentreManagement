@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TrainingCentreManagement.BLL.Contracts;
+using TrainingCentreManagement.BLL.Managers;
 using TrainingCentreManagement.DatabaseContext.DatabaseContext;
 using TrainingCentreManagement.Models.EntityModels.Trainees;
 
@@ -14,36 +16,34 @@ namespace TrainingCentreManagement.Controllers
     [Authorize(Roles = "Admin")]
     public class TraineesController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly ITraineeManager _iTraineeManager;
 
-        public TraineesController(ApplicationDbContext context)
+        public TraineesController(ITraineeManager iTraineeManager)
         {
-            _context = context;
+            _iTraineeManager = iTraineeManager;
+        }
+        public IActionResult Index()
+        {
+            var trainees = _iTraineeManager.GetAll().ToList();
+            return View(trainees);
         }
 
-        // GET: Trainees
-        public async Task<IActionResult> Index()
-        {
-            return View(await _context.Trainees.ToListAsync());
-        }
-
-        // GET: Trainees/Details/5
-        public async Task<IActionResult> Details(long? id)
+        public IActionResult Details(long? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var trainee = await _context.Trainees
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (trainee == null)
+            var trainees = _iTraineeManager.GetById(id);
+            if (trainees == null)
             {
                 return NotFound();
             }
 
-            return View(trainee);
+            return View(trainees);
         }
+        
 
         // GET: Trainees/Create
         public IActionResult Create()
@@ -51,44 +51,38 @@ namespace TrainingCentreManagement.Controllers
             return View();
         }
 
-        // POST: Trainees/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+       
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,EntityDescription,Email,Phone,Address,CreatedAt,UpdatedAt")] Trainee trainee)
+        public IActionResult Create(Trainee trainee)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(trainee);
-                await _context.SaveChangesAsync();
+                _iTraineeManager.Add(trainee);
                 return RedirectToAction(nameof(Index));
             }
+            
             return View(trainee);
         }
-
-        // GET: Trainees/Edit/5
-        public async Task<IActionResult> Edit(long? id)
+        public IActionResult Edit(long? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var trainee = await _context.Trainees.FindAsync(id);
+            var trainee = _iTraineeManager.GetById(id);
             if (trainee == null)
             {
                 return NotFound();
             }
+           
             return View(trainee);
         }
-
-        // POST: Trainees/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Name,EntityDescription,Email,Phone,Address,CreatedAt,UpdatedAt")] Trainee trainee)
+        public IActionResult Edit(long id, Trainee trainee)
         {
             if (id != trainee.Id)
             {
@@ -99,8 +93,8 @@ namespace TrainingCentreManagement.Controllers
             {
                 try
                 {
-                    _context.Update(trainee);
-                    await _context.SaveChangesAsync();
+                    _iTraineeManager.Update(trainee);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -115,19 +109,17 @@ namespace TrainingCentreManagement.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            
             return View(trainee);
         }
-
-        // GET: Trainees/Delete/5
-        public async Task<IActionResult> Delete(long? id)
+        public IActionResult Delete(long? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var trainee = await _context.Trainees
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var trainee = _iTraineeManager.GetById(id);
             if (trainee == null)
             {
                 return NotFound();
@@ -136,20 +128,22 @@ namespace TrainingCentreManagement.Controllers
             return View(trainee);
         }
 
-        // POST: Trainees/Delete/5
+
+        // POST: Courses/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
+        public IActionResult DeleteConfirmed(long id)
         {
-            var trainee = await _context.Trainees.FindAsync(id);
-            _context.Trainees.Remove(trainee);
-            await _context.SaveChangesAsync();
+            var trainee = _iTraineeManager.GetById(id);
+            _iTraineeManager.Remove(trainee);
+
             return RedirectToAction(nameof(Index));
         }
 
         private bool TraineeExists(long id)
         {
-            return _context.Trainees.Any(e => e.Id == id);
+            return _iTraineeManager.GetAll().Any(e => e.Id == id);
         }
+        
     }
 }

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using TrainingCentreManagement.BLL.Contracts;
+using TrainingCentreManagement.BLL.Managers;
 using TrainingCentreManagement.DatabaseContext.DatabaseContext;
 using TrainingCentreManagement.Models.EntityModels.Batches;
 using TrainingCentreManagement.Models.EntityModels.Trainings;
@@ -13,92 +15,81 @@ using TrainingCentreManagement.Models.EntityModels.Trainings;
 namespace TrainingCentreManagement.Controllers
 {
     [Authorize(Roles = "Admin")]
-    public class BatchesController : Controller
+    public class BatchController : Controller
     {
-        private readonly ApplicationDbContext _context;
+        private readonly IBatchManager _iBatchManager;
+        private readonly IBatchTrainerManager _iBatchTrainerManager;
+        private readonly IScedhuleTypeManager _IScedhuleTypeManager;
 
-        public BatchesController(ApplicationDbContext context)
+        public BatchController(IBatchManager iBatchManager, IBatchTrainerManager iBatchTrainerManager, IScedhuleTypeManager iScedhuleTypeManager)
         {
-            _context = context;
+            _iBatchManager = iBatchManager;
+            _iBatchTrainerManager = iBatchTrainerManager;
+            _IScedhuleTypeManager = iScedhuleTypeManager;
         }
-
         // GET: Batches
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            var applicationDbContext = _context.Batches.Include(b => b.BatchSchedule).Include(b => b.Training);
-            return View(await applicationDbContext.ToListAsync());
+            var batches = _iBatchManager.GetAll().ToList();
+            return View(batches);
         }
 
-        // GET: Batches/Details/5
-        public async Task<IActionResult> Details(long? id)
+        public IActionResult Details(long? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var batch = await _context.Batches
-                .Include(b => b.BatchSchedule)
-                .Include(b => b.Training)
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (batch == null)
+            var batches = _iBatchManager.GetById(id);
+            if (batches == null)
             {
                 return NotFound();
             }
 
-            return View(batch);
+            return View(batches);
         }
 
-        // GET: Batches/Create
         public IActionResult Create()
         {
-            ViewData["BatchScheduleId"] = new SelectList(_context.Set<BatchSchedule>(), "Id", "Discriminator");
-            ViewData["TrainingId"] = new SelectList(_context.Set<Training>(), "Id", "Discriminator");
+            ViewData["BatchScheduleId"] = new SelectList(_IScedhuleTypeManager.GetAll(), "Id", "Name");
             return View();
         }
 
-        // POST: Batches/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,IsNameDisplayed,EntityDescription,Description,TotalCapacity,RegistrationStart,RegistrationEnd,TrainingStart,BatchScheduleId,TrainingId,IsFree,Fee,CreatedAt,UpdatedAt")] Batch batch)
+        public IActionResult Create(Batch batch)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(batch);
-                await _context.SaveChangesAsync();
+                _iBatchManager.Add(batch);
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BatchScheduleId"] = new SelectList(_context.Set<BatchSchedule>(), "Id", "Discriminator", batch.BatchScheduleId);
-            ViewData["TrainingId"] = new SelectList(_context.Set<Training>(), "Id", "Discriminator", batch.TrainingId);
+            ViewData["BatchScheduleId"] = new SelectList(_IScedhuleTypeManager.GetAll(), "Id", "Name", batch.BatchScheduleId);
             return View(batch);
         }
 
-        // GET: Batches/Edit/5
-        public async Task<IActionResult> Edit(long? id)
+
+        public IActionResult Edit(long? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var batch = await _context.Batches.FindAsync(id);
-            if (batch == null)
+            var batch = _iBatchManager.GetById(id);
+            if (batch== null)
             {
                 return NotFound();
             }
-            ViewData["BatchScheduleId"] = new SelectList(_context.Set<BatchSchedule>(), "Id", "Discriminator", batch.BatchScheduleId);
-            ViewData["TrainingId"] = new SelectList(_context.Set<Training>(), "Id", "Discriminator", batch.TrainingId);
+            ViewData["BatchScheduleId"] = new SelectList(_IScedhuleTypeManager.GetAll(), "Id", "Name" , batch.BatchScheduleId);
             return View(batch);
         }
 
-        // POST: Batches/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(long id, [Bind("Id,Name,IsNameDisplayed,EntityDescription,Description,TotalCapacity,RegistrationStart,RegistrationEnd,TrainingStart,BatchScheduleId,TrainingId,IsFree,Fee,CreatedAt,UpdatedAt")] Batch batch)
+        public IActionResult Edit(long id, Batch batch)
         {
             if (id != batch.Id)
             {
@@ -109,8 +100,8 @@ namespace TrainingCentreManagement.Controllers
             {
                 try
                 {
-                    _context.Update(batch);
-                    await _context.SaveChangesAsync();
+                    _iBatchManager.Update(batch);
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -125,23 +116,17 @@ namespace TrainingCentreManagement.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["BatchScheduleId"] = new SelectList(_context.Set<BatchSchedule>(), "Id", "Discriminator", batch.BatchScheduleId);
-            ViewData["TrainingId"] = new SelectList(_context.Set<Training>(), "Id", "Discriminator", batch.TrainingId);
+            ViewData["BatchScheduleId"] = new SelectList(_IScedhuleTypeManager.GetAll(), "Id", "Name", batch.BatchScheduleId);
             return View(batch);
         }
-
-        // GET: Batches/Delete/5
-        public async Task<IActionResult> Delete(long? id)
+        public IActionResult Delete(long? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            var batch = await _context.Batches
-                .Include(b => b.BatchSchedule)
-                .Include(b => b.Training)
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var batch = _iBatchManager.GetById(id);
             if (batch == null)
             {
                 return NotFound();
@@ -150,20 +135,22 @@ namespace TrainingCentreManagement.Controllers
             return View(batch);
         }
 
-        // POST: Batches/Delete/5
+
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(long id)
+        public IActionResult DeleteConfirmed(long id)
         {
-            var batch = await _context.Batches.FindAsync(id);
-            _context.Batches.Remove(batch);
-            await _context.SaveChangesAsync();
+            var course = _iBatchManager.GetById(id);
+            _iBatchManager.Remove(course);
+
             return RedirectToAction(nameof(Index));
         }
 
         private bool BatchExists(long id)
         {
-            return _context.Batches.Any(e => e.Id == id);
+            return _iBatchManager.GetAll().Any(e => e.Id == id);
         }
+
+        
     }
 }
