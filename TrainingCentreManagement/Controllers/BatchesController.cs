@@ -62,6 +62,8 @@ namespace TrainingCentreManagement.Controllers
         {
             if (ModelState.IsValid)
             {
+                batch.CreatedAt = DateTime.Now;
+                batch.UpdatedAt = DateTime.Now;
                 _iBatchManager.Add(batch);
                 return RedirectToAction(nameof(Index));
             }
@@ -100,6 +102,7 @@ namespace TrainingCentreManagement.Controllers
             {
                 try
                 {
+                    batch.UpdatedAt = DateTime.Now;
                     _iBatchManager.Update(batch);
 
                 }

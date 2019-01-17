@@ -59,6 +59,8 @@ namespace TrainingCentreManagement.Controllers
         {
             if (ModelState.IsValid)
             {
+              trainer.CreatedAt = DateTime.Now;
+                trainer.UpdatedAt = DateTime.Now;
                 _iTrainerManager.Add(trainer);
                 return RedirectToAction(nameof(Index));
             }
@@ -93,6 +95,7 @@ namespace TrainingCentreManagement.Controllers
             {
                 try
                 {
+                    trainer.UpdatedAt = DateTime.Now;
                     _iTrainerManager.Update(trainer);
 
                 }
