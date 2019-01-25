@@ -20,12 +20,14 @@ namespace TrainingCentreManagement.Controllers
         private readonly IBatchManager _iBatchManager;
         private readonly IBatchTrainerManager _iBatchTrainerManager;
         private readonly IScedhuleTypeManager _IScedhuleTypeManager;
+        private readonly ITrainingManager _iTrainingManager;
 
-        public BatchController(IBatchManager iBatchManager, IBatchTrainerManager iBatchTrainerManager, IScedhuleTypeManager iScedhuleTypeManager)
+        public BatchController(ITrainingManager iTrainingManager,IBatchManager iBatchManager, IBatchTrainerManager iBatchTrainerManager, IScedhuleTypeManager iScedhuleTypeManager)
         {
             _iBatchManager = iBatchManager;
             _iBatchTrainerManager = iBatchTrainerManager;
             _IScedhuleTypeManager = iScedhuleTypeManager;
+            _iTrainingManager = iTrainingManager;
         }
         // GET: Batches
         public IActionResult Index()
@@ -52,7 +54,9 @@ namespace TrainingCentreManagement.Controllers
 
         public IActionResult Create()
         {
+            
             ViewData["BatchScheduleId"] = new SelectList(_IScedhuleTypeManager.GetAll(), "Id", "Name");
+            ViewData["TrainingId"] = new SelectList(_iTrainingManager.GetAll(), "Id", "Name");
             return View();
         }
 
@@ -68,6 +72,7 @@ namespace TrainingCentreManagement.Controllers
                 return RedirectToAction(nameof(Index));
             }
             ViewData["BatchScheduleId"] = new SelectList(_IScedhuleTypeManager.GetAll(), "Id", "Name", batch.BatchScheduleId);
+            ViewData["TrainingId"] = new SelectList(_iTrainingManager.GetAll(), "Id", "Name");
             return View(batch);
         }
 
