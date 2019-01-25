@@ -4,6 +4,7 @@ using TrainingCentreManagement.Models.EntityModels.Batches;
 using TrainingCentreManagement.Models.EntityModels.Categories;
 using TrainingCentreManagement.Models.EntityModels.IdentityEntities;
 using TrainingCentreManagement.Models.EntityModels.Institues;
+using TrainingCentreManagement.Models.EntityModels.Scheduls;
 using TrainingCentreManagement.Models.EntityModels.Tags;
 using TrainingCentreManagement.Models.EntityModels.Trainees;
 using TrainingCentreManagement.Models.EntityModels.Trainers;
@@ -57,6 +58,7 @@ namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
         public DbSet<Trainer> Trainers { get; set; }
         public DbSet<Trainee> Trainees { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Schedule> Schedules { set; get; }
           
     }
 }
