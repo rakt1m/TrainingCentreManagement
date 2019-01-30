@@ -105,6 +105,9 @@ namespace TrainingCentreManagement.Configuration
 
             services.AddTransient<ITrainingTagManager, TrainingTagManager>();
             services.AddTransient<ITrainingTagRepository, TrainingTagRepository>();
+
+            services.AddTransient<ITrainingScheduleRepository, TrainingScheduleRepository>();
+            services.AddTransient<ITrainingScheduleManager, TrainingScheduleManager>();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
             if (!optionsBuilder.IsConfigured)
             {
 
-                optionsBuilder .UseSqlServer("Server=PENCILBOX;Database=TrainingCenterDB;Trusted_Connection=True;");
+                optionsBuilder .UseSqlServer("Server=.\\SqlExpress;Database=TrainingCenterDB;Trusted_Connection=True;");
 
             }
         }
@@ -59,6 +59,7 @@ namespace TrainingCentreManagement.DatabaseContext.DatabaseContext
         public DbSet<Trainee> Trainees { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Schedule> Schedules { set; get; }
+        public DbSet<TrainingSchedule> TrainingSchedules { get; set; }  
           
     }
 }

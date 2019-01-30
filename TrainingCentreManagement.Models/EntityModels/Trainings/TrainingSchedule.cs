@@ -11,7 +11,7 @@ namespace TrainingCentreManagement.Models.EntityModels.Trainings
             ScheduleTypeId = (int)ScheduleTypeEnum.Training;
         }
 
-        [Required]
+        
         public Training Training { get; set; }
     }
 }
